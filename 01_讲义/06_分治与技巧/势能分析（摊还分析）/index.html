@@ -1,0 +1,7521 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="信息学竞赛讲义、题解与集训复盘">
+      
+      
+      
+      
+        <link rel="prev" href="../%E5%88%86%E6%B2%BB%EF%BC%9A%E5%BA%8F%E5%88%97%E5%88%86%E6%B2%BB%EF%BC%88CDQ%EF%BC%89%E4%B8%8E%E7%82%B9%E5%88%86%E6%B2%BB/">
+      
+      
+        <link rel="next" href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8D%9A%E5%BC%88%E8%AE%BA/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>势能分析（摊还分析） - 吕望殊的 OI 笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/oi.css">
+    
+      <link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="吕望殊的 OI 笔记" class="md-header__button md-logo" aria-label="吕望殊的 OI 笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            吕望殊的 OI 笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              势能分析（摊还分析）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/00%20%E6%80%BB%E8%A7%88/" class="md-tabs__link">
+          
+  
+  
+  总览
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E5%AD%A6/" class="md-tabs__link">
+          
+  
+  
+  讲义
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%A2%98%E8%A7%A3%E6%80%BB%E8%A7%88/" class="md-tabs__link">
+          
+  
+  
+  题解
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%9B%86%E8%AE%AD%E4%B8%8E%E6%AF%94%E8%B5%9B/" class="md-tabs__link">
+          
+  
+  
+  集训与比赛
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="md-tabs__link">
+          
+  
+  
+  站点
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="吕望殊的 OI 笔记" class="md-nav__button md-logo" aria-label="吕望殊的 OI 笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    吕望殊的 OI 笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    总览
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/00%20%E6%80%BB%E8%A7%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 总览
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%86%E6%B2%BB%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 分治与技巧
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 初赛与应试
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 动态规划
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8D%9A%E5%BC%88%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 博弈论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 图论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 字符串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数学
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数据结构
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%9B%86%E8%AE%AD%E4%B8%8E%E6%AF%94%E8%B5%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 集训与比赛
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%A2%98%E8%A7%A3%E6%80%BB%E8%A7%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 题解总览
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88CSP-J%E2%86%92CSP-S%E2%86%92NOI%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线（CSP-J→CSP-S→NOI）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/%E6%A0%87%E7%AD%BE%E4%B8%8E%E5%AD%97%E6%AE%B5%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标签与字段规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    讲义
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    讲义
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数学
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/exBSGS%20%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    exBSGS 算法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E5%8E%9F%E6%A0%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原根（Primitive Root）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E5%90%8C%E4%BD%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    同余
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E6%95%B0%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E8%AE%A1%E6%95%B0%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数论：组合数学与计数原理
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    期望
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    矩阵快速幂
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线性代数基础
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_%E6%95%B0%E5%AD%A6/%E7%BB%84%E5%90%88%E6%95%B0%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组合数计算
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数据结构
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/RMQ%20%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMQ 问题
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04_%E6%A8%A1%E6%9D%BF/%E7%AB%9E%E8%B5%9B%E6%A8%A1%E6%9D%BF%EF%BC%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    竞赛模板 (数据结构)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    笛卡尔树
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    图论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 图论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/2-SAT%20%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2-SAT 算法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/Tarjan%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%97%A0%E5%90%91%E5%9B%BE%E8%BF%9E%E9%80%9A%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tarjan 算法与无向图连通性（割点与桥）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E8%AE%BA%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%EF%BC%8C%E5%88%86%E5%B1%82%E5%9B%BE%EF%BC%8C%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%EF%BC%88Boruvka%EF%BC%89%EF%BC%8C%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E8%AE%BA%EF%BC%9ALCA%E3%80%81%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84%E3%80%81%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83%E3%80%81%E4%BA%8C%E5%88%86%E5%9B%BE%E4%B8%8E%20Tarjan%20%E7%BC%A9%E7%82%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图论：LCA、树的直径、树的重心、二分图与 Tarjan 缩点
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E4%B8%8E%E6%AC%A7%E6%8B%89%E9%80%9A%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欧拉回路与欧拉通路
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    字符串
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 字符串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/AC%20%E8%87%AA%E5%8A%A8%E6%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC 自动机
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%20%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KMP 算法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E5%85%B8%E6%A0%91%20Trie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字典树 *Trie*
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串哈希
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态规划
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    动态规划
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 动态规划
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/LIS%20%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LIS 最长上升子序列
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%8A%A8%E6%80%81%20DP%EF%BC%88DDP%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态 DP（DDP）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96%20DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    单调队列优化 DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%B8%A6%E6%9D%83%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    带权区间调度问题
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B0%E4%BD%8D%20DP%20%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数位 DP 进阶
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96%20DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    斜率优化 DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%A0%91%E5%BD%A2%20DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    树形 DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%8A%B6%E5%8E%8BDP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状压DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%BA%BF%E6%80%A7DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线性DP专题笔记 Day1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分治与技巧
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    分治与技巧
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%86%E6%B2%BB%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 分治与技巧
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%88%86%E6%B2%BB%EF%BC%9A%E5%BA%8F%E5%88%97%E5%88%86%E6%B2%BB%EF%BC%88CDQ%EF%BC%89%E4%B8%8E%E7%82%B9%E5%88%86%E6%B2%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分治：序列分治（CDQ）与点分治
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    势能分析（摊还分析）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    势能分析（摊还分析）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 摊还分析的引入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 势能法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 核心定理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 使用势能法的一般步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入门实例：二进制计数器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入门实例：二进制计数器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 问题描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 朴素分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 精确计数法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 势能法分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典应用：区间开根号
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="经典应用：区间开根号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 问题描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 核心观察
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 基于线段树的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 势能分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 代码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lowbit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进阶：区间加 lowbit 与公共低位后缀
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进阶：区间加 lowbit 与公共低位后缀">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 问题描述（简化版）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 末尾零数的单调性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 简化版的势能分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 加一操作与公共低位后缀
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-lowbit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 lowbit 修改的分类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 线段树实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 势能分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 代码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结与方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结与方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 势能法的适用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 设计势能函数的经验法则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 分析步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    博弈论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    博弈论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8D%9A%E5%BC%88%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 博弈论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_%E5%8D%9A%E5%BC%88%E8%AE%BA/%E5%8D%9A%E5%BC%88%E8%AE%BA%EF%BC%9AICG%20%E4%B8%8E%E6%9C%89%E5%90%91%E5%9B%BE%E6%B8%B8%E6%88%8F%20%C2%B7%20SG%20%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    博弈论：ICG 与有向图游戏 · SG 函数
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    初赛与应试
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    初赛与应试
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 初赛与应试
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E5%88%9D%E8%B5%9B%E7%B2%BE%E8%AE%B2%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97%E4%B8%8E%E7%BC%96%E7%A0%81%E7%B1%BB%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 初赛精讲：位运算与编码类技巧
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%20%E5%8D%95%E9%80%89%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%E9%80%9F%E8%AE%B0%E5%8D%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲 单选高频考点速记卡
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E5%9B%BE%E8%AE%BA%E3%80%81%E6%A0%91%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：图论、树与数据结构
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E5%A4%8D%E6%9D%82%E5%BA%A6%E3%80%81%E4%B8%BB%E5%AE%9A%E7%90%86%E3%80%81%E8%AF%AD%E8%A8%80%E7%BB%86%E8%8A%82%E4%B8%8E%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：复杂度、主定理、语言细节与编程环境
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E6%95%B0%E8%AE%BA%E4%B8%8E%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：数论与概率期望
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：组合数学
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    题解
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%A2%98%E8%A7%A3%E6%80%BB%E8%A7%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 题解总览
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    洛谷（22）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    洛谷（22）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P1081%20NOIP%202012%20%E6%8F%90%E9%AB%98%E7%BB%84%20%E5%BC%80%E8%BD%A6%E6%97%85%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1081 [NOIP 2012 提高组] 开车旅行
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P1117%20NOI2016%20%E4%BC%98%E7%A7%80%E7%9A%84%E6%8B%86%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1117 [NOI2016] 优秀的拆分
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P11694%20JRKSJ%20ExR%20%E6%B7%87%E5%AE%9D%E7%9A%84%E5%88%92%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P11694 [JRKSJ ExR] 淇宝的划分
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P12960%20%E6%AF%92%E8%8D%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P12960 毒药
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P12961%20%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P12961 树
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P17277%20Gift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P17277 Gift
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P17278%20Hikari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P17278 Hikari
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P17723%20SCP-S%202026%20%E5%87%BD%E6%95%B0%20%C2%B7%20func/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P17723 [SCP-S 2026] 函数 / func
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P2375%20NOI2014%20%E5%8A%A8%E7%89%A9%E5%9B%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P2375 [NOI2014] 动物园
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3029%20USACO11NOV%20Cow%20Lineup%20S%E2%80%94%E2%80%94%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%94%B6%E7%BC%A9%E9%A1%BA%E5%BA%8F%E7%9A%84%E8%87%B4%E5%91%BD%E7%BB%86%E8%8A%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3029 USACO11NOV Cow Lineup S——滑动窗口收缩顺序的致命细节
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3067%20USACO12OPEN%20Balanced%20Cow%20Subsets%20G/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3067 [USACO12OPEN] Balanced Cow Subsets G
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3225%20HNOI2012%20%E7%9F%BF%E5%9C%BA%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3225 [HNOI2012] 矿场搭建
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3237%20ZJOI2014%20%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3237 [ZJOI2014] 网络
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P5324%20BJOI2019%20%E5%88%A0%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P5324 [BJOI2019] 删数
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P5336%20%E6%88%90%E7%BB%A9%E5%8D%95%EF%BC%88%E5%8C%BA%E9%97%B4%20DP%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P5336 成绩单 (区间DP)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P6534%20COCI%202015-2016%20No.1%20UZASTOPNI%20%E7%AD%89%E5%B7%AE%E6%A0%91%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P6534 [COCI 2015/2016 #1] UZASTOPNI 等差树列
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P7668%20JOI%202018%20Final%20%E5%9B%A2%E5%AD%90%E5%88%B6%E4%BD%9C%20%C2%B7%20Dango%20Maker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P7668 [JOI 2018 Final] 团子制作 / Dango Maker
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P7929%20COCI%202021-2022%20No.1%20Logi%C4%8Dari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P7929 [COCI 2021/2022 #1] Logičari
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8365%20LNOI2022%20%E5%90%83%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8365 [LNOI2022] 吃（贪心）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8564%20%E6%A0%91%E4%B8%8A%E8%83%8C%E5%8C%85/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8564 ρars/ey 题解 (树上背包)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8595%20%E4%B8%80%E4%B8%AA%E7%BD%91%E7%9A%84%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8595「KDOI-02」一个网的路
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8981%20%E3%80%8CDROI%E3%80%8DRound%201%20%E8%B7%9D%E7%A6%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8981 「DROI」Round 1 距离
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codeforces（4）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Codeforces（4）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF1144G%20Two%20Merged%20Sequences/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF1144G Two Merged Sequences
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF1882D%20Tree%20XOR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF1882D Tree XOR
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF813D%20Two%20Melodies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF813D Two Melodies
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF916E%20Jamie%20and%20Tree%EF%BC%88LCA%20%E4%B8%8E%E5%80%8D%E5%A2%9E%E4%B8%93%E9%A2%98%E5%A4%8D%E7%9B%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF916E Jamie and Tree
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AtCoder（2）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AtCoder（2）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/AT_dp_t%20Permutation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AT_dp_t Permutation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/ABC282G%20Similar%20Permutation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [ABC282G] Similar Permutation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内部模拟赛（6）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    内部模拟赛（6）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T1%20%E7%A7%B0%E9%87%8D%EF%BC%88weight%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T1 称重（weight）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T2%20%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%EF%BC%88lis%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T2 最长上升子序列（lis）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T3%20%E5%BD%92%E5%B1%9E%E9%98%88%E5%80%BC%EF%BC%88claims%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T3 归属阈值（claims）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T3%20%E6%B6%82%E9%B8%A6%E5%B8%A6%E5%B8%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T3 涂鸦带师
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T3%20%E8%B5%9B%E8%BD%A6%E6%AF%94%E8%B5%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T3 赛车比赛
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T4%20%E5%B7%A6%E5%8F%B3%E6%A8%AA%E8%B7%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T4 左右横跳
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自主题解（30）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    自主题解（30）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%8E%84%E8%BF%90%E6%95%B0%E5%AD%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B. 厄运数字
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E9%87%8D%E7%94%9F%E6%88%90%E7%8C%AA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C. 重生成猪
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CSP-S%202020%20%E8%B4%AA%E5%90%83%E8%9B%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 2020 贪吃蛇（NOI/NOI+/CTS）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/U745743%20%E5%8A%A0%E6%9D%83%E8%B7%9D%E7%A6%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    U745743 加权距离
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--待补"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/Yet%20Another%20Array%20Counting%20Problem%EF%BC%88NOIP%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yet Another Array Counting Problem(NOIP)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%81%9C%E8%BD%A6%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    停车场
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%AD%90%E9%9B%86%E7%BB%9F%E8%AE%A1%EF%BC%88%E8%83%8C%E5%8C%85%20DP%20%E4%B8%93%E9%A2%98%E5%A4%8D%E7%9B%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    子集统计 题解 （背包DP 专题赛复盘）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    家庭作业
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%B7%9D%E5%89%A7%E5%A4%8D%E6%BC%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    川剧复演
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%B9%B8%E8%BF%90%E4%B8%B2%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    幸运串串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%89%AD%E5%8A%A8%E7%9A%84%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扭动的树
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%8A%9B%E6%8E%B7%E7%A1%AC%E5%B8%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    抛掷硬币
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%95%B0%E5%88%97%E6%B1%82%E5%80%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数列求值
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    斐波那契
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%96%B9%E9%98%B5%E6%B8%B8%E6%88%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方阵游戏
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%9C%80%E5%BC%BA%E8%BE%85%E5%8A%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最强辅助
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%87%83%E7%83%A7%E7%81%AB%E7%84%B0%EF%BC%88%E6%9C%80%E7%9F%AD%E8%B7%AF%E4%B8%93%E9%A2%98%E5%A4%8D%E7%9B%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    燃烧火焰
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%99%BB%E5%BD%95%E6%97%A5%E5%BF%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    登录日志
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%A7%AF%E6%9C%A8%E6%B8%B8%E6%88%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    积木游戏
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%A8%B3%E7%A8%B3%E7%9F%A9%E9%98%B5%EF%BC%88T2%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    稳稳矩阵（T2）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%9C%9C%E9%9B%AA%E5%86%B0%E5%9F%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    蜜雪冰城
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B0%83%E6%9F%A5%E8%B4%A6%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    调查账本
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B7%AF%E5%BE%84%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径统计
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B7%B3%E7%9F%B3%E5%A4%B4%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    跳石头题
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B7%B3%E8%B7%83%E6%AD%A5%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    跳跃步数
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E9%9B%86%E5%90%88%E5%88%92%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集合划分
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%B6%82%E8%89%B2%E6%96%B9%E6%A1%88%EF%BC%88T1%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解 涂色方案(T1)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%97%A0%E9%85%92%E7%B2%BE%E6%97%A5%EF%BC%88T2%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解：无酒精日 (T2)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E9%92%B1%E4%BB%93%E9%97%AE%E9%A2%98%EF%BC%88T3%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解：钱仓问题 (T3)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集训与比赛
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    集训与比赛
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%9B%86%E8%AE%AD%E4%B8%8E%E6%AF%94%E8%B5%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 集训与比赛
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/2026-10%20%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 · 10 做题记录 (每日更新)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/Vjudge%20%E9%A2%98%E5%8D%95%EF%BC%88%E5%9B%BD%E5%BA%86%E9%9B%86%E8%AE%AD%E4%B8%93%E9%A2%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vjudge 题单（国庆集训专题）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/%E6%9A%91%E6%9C%9F%E4%BF%A1%E5%A5%A5%E9%9B%86%E8%AE%AD%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    暑期信奥集训总结
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/%E6%9A%91%E6%9C%9F%E9%9B%86%E8%AE%AD%20%C2%B7%20%E5%89%8D12%20%E5%A4%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    暑期集训 · 前12 天学习总结
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    站点
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    站点
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    知识图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标签索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 摊还分析的引入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 势能法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 核心定理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 使用势能法的一般步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入门实例：二进制计数器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入门实例：二进制计数器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 问题描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 朴素分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 精确计数法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 势能法分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典应用：区间开根号
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="经典应用：区间开根号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 问题描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 核心观察
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 基于线段树的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 势能分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 代码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lowbit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进阶：区间加 lowbit 与公共低位后缀
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进阶：区间加 lowbit 与公共低位后缀">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 问题描述（简化版）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 末尾零数的单调性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 简化版的势能分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 加一操作与公共低位后缀
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-lowbit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 lowbit 修改的分类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 线段树实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 势能分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 代码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结与方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结与方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 势能法的适用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 设计势能函数的经验法则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 分析步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法势能分析" class="md-tag">算法/势能分析</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法复杂度分析" class="md-tag">算法/复杂度分析</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法摊还分析" class="md-tag">算法/摊还分析</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法线段树" class="md-tag">算法/线段树</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:类型讲义" class="md-tag">类型/讲义</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:领域分治与技巧" class="md-tag">领域/分治与技巧</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="_1">势能分析（摊还分析）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="_2">基本概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 摊还分析的引入<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>在算法分析中，我们通常关注单次操作的最坏时间复杂度。然而，对于某些数据结构，虽然单次操作的最坏情况代价很高，但在一系列操作中，高代价操作的总次数是受限的，因此平均到每次操作的代价并不高。</p>
+<p><strong>定义 1.1（摊还分析）</strong>：摊还分析（Amortized Analysis）是一种分析算法时间复杂度的方法，它研究的是<strong>一系列操作的平均代价</strong>，而非单个操作的最坏代价。</p>
+<p>摊还分析保证的是：在最坏情况下，所有操作的<strong>总代价</strong>的上界。它不涉及概率，而是确定性的保证。</p>
+<blockquote>
+<p><strong>注意</strong>：摊还分析与"平均情况分析"不同。平均情况分析假设输入服从某种概率分布，而摊还分析对任意输入序列都成立。</p>
+</blockquote>
+<h3 id="12">1.2 势能法<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>势能法（<em>Potential Method</em>）是摊还分析的一种常用技术，其思想来源于物理学中的势能概念。</p>
+<p><strong>定义 1.2（势能函数）</strong>：设 <span class="arithmatex">\(D_0\)</span> 为数据结构的初始状态，<span class="arithmatex">\(D_i\)</span> 为执行第 <span class="arithmatex">\(i\)</span> 次操作后的状态。势能函数 <span class="arithmatex">\(\Phi\)</span> 将每个状态 <span class="arithmatex">\(D_i\)</span> 映射到一个非负实数 <span class="arithmatex">\(\Phi(D_i)\)</span>，称为该状态的<strong>势能</strong>。</p>
+<p><strong>定义 1.3（摊还代价）</strong>：第 <span class="arithmatex">\(i\)</span> 次操作的摊还代价 <span class="arithmatex">\(\hat{c}_i\)</span> 定义为：</p>
+<p><span class="arithmatex">\(\hat{c}_i = c_i + \Phi(D_i) - \Phi(D_{i-1})\)</span></p>
+<p>其中 <span class="arithmatex">\(c_i\)</span> 为第 <span class="arithmatex">\(i\)</span> 次操作的实际代价。</p>
+<p>换言之，摊还代价等于实际代价加上<strong>本次操作引起的势能变化量。</strong></p>
+<h3 id="13">1.3 核心定理<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p><strong>定理 1.1</strong>：设 <span class="arithmatex">\(\Phi\)</span> 为一个势能函数，满足 <span class="arithmatex">\(\Phi(D_0) = 0\)</span> 且对所有 <span class="arithmatex">\(i \ge 0\)</span> 有 <span class="arithmatex">\(\Phi(D_i) \ge 0\)</span>。则对任意 <span class="arithmatex">\(n \ge 1\)</span>，有：</p>
+<p><span class="arithmatex">\(\sum_{i=1}^{n} c_i \le \sum_{i=1}^{n} \hat{c}_i\)</span></p>
+<p>即<strong>总实际代价不超过总摊还代价</strong>。</p>
+<blockquote>
+<h4 id="_3"><strong>证明</strong>：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>将摊还代价的定义式累加：</p>
+<p><span class="arithmatex">\(\sum_{i=1}^{n} \hat{c}_i = \sum_{i=1}^{n} c_i + \sum_{i=1}^{n} \left( \Phi(D_i) - \Phi(D_{i-1}) \right)\)</span></p>
+<p>右端第二项为<span class="arithmatex">\(望远镜求和\)</span>，</p>
+<p>化简得：<span class="arithmatex">\(\sum_{i=1}^{n} \left( \Phi(D_i) - \Phi(D_{i-1}) \right) = \Phi(D_n) - \Phi(D_0)\)</span></p>
+<p>因此：<span class="arithmatex">\(\sum_{i=1}^{n} \hat{c}_i = \sum_{i=1}^{n} c_i + \Phi(D_n) - \Phi(D_0)\)</span></p>
+<p>由题设 <span class="arithmatex">\(\Phi(D_0) = 0\)</span> 且 <span class="arithmatex">\(\Phi(D_n) \ge 0\)</span>，</p>
+<p>故：<span class="arithmatex">\(\sum_{i=1}^{n} c_i = \sum_{i=1}^{n} \hat{c}_i - \Phi(D_n) \le \sum_{i=1}^{n} \hat{c}_i\)</span></p>
+<p>证毕。</p>
+</blockquote>
+<h3 id="14">1.4 使用势能法的一般步骤<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>设计势能函数</strong>：根据数据结构的特点，选取合适的势能函数 <span class="arithmatex">\(\Phi\)</span>。</li>
+<li><strong>验证非负性</strong>：确认 <span class="arithmatex">\(\Phi(D_0) = 0\)</span> 且对所有状态均有 <span class="arithmatex">\(\Phi(D) \ge 0\)</span>。</li>
+<li><strong>计算摊还代价</strong>：对每种操作，计算其摊还代价 <span class="arithmatex">\(\hat{c}_i\)</span> 的上界。</li>
+<li><strong>求和得总代价</strong>：将所有操作的摊还代价求和，得到总实际代价的上界。</li>
+</ol>
+<hr />
+<h2 id="_4">入门实例：二进制计数器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 问题描述<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>考虑一个 <span class="arithmatex">\(k\)</span> 位二进制计数器，初始值为 0。支持一种操作：加一。每次加一时，从最低位开始翻转位：若该位为 1，则翻为 0 并继续向高位进位；若该位为 0，则翻为 1 并停止。</p>
+<p>定义操作的实际代价为本次操作中翻转的二进制位的数量。</p>
+<p><strong>问题</strong>：从 0 开始，连续执行 <span class="arithmatex">\(n\)</span> 次加一操作，求总翻转次数的上界。</p>
+<h3 id="22">2.2 朴素分析<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>单次操作最多翻转 <span class="arithmatex">\(k\)</span> 位（当所有位均为 1 时）。因此，<span class="arithmatex">\(n\)</span> 次操作的总代价上界为 <span class="arithmatex">\(O(nk)\)</span>。但这是一个较为宽松的上界。</p>
+<h3 id="23">2.3 精确计数法<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>我们可以直接统计每一位被翻转的次数：</p>
+<ul>
+<li>第 0 位（最低位）：每次加一均翻转，共 <span class="arithmatex">\(n\)</span> 次</li>
+<li>第 1 位：每 2 次加一翻转一次，共 <span class="arithmatex">\(\lfloor n/2 \rfloor\)</span> 次</li>
+<li>第 2 位：每 4 次加一翻转一次，共 <span class="arithmatex">\(\lfloor n/4 \rfloor\)</span> 次</li>
+<li>第 <span class="arithmatex">\(i\)</span> 位：每 <span class="arithmatex">\(2^i\)</span> 次加一翻转一次，共 <span class="arithmatex">\(\lfloor n/2^i \rfloor\)</span> 次</li>
+</ul>
+<p>总翻转次数：</p>
+<p><span class="arithmatex">\(\sum_{i=0}^{k-1} \left\lfloor \frac{n}{2^i} \right\rfloor \le \sum_{i=0}^{\infty} \frac{n}{2^i} = 2n\)</span></p>
+<p>因此总代价为 <span class="arithmatex">\(O(n)\)</span>。</p>
+<h3 id="24">2.4 势能法分析<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<p>现在我们用势能法来得到同样的结论，以演示势能法的使用方法。</p>
+<p><strong>定义势能函数</strong>：设 <span class="arithmatex">\(\Phi(D_i)\)</span> 为第 <span class="arithmatex">\(i\)</span> 次加一后，计数器中值为 1 的二进制位的个数。</p>
+<ul>
+<li>初始状态：<span class="arithmatex">\(\Phi(D_0) = 0\)</span>（计数器为 0，没有 1）</li>
+<li>非负性：显然成立，1 的个数不可能为负</li>
+</ul>
+<p><strong>分析单次操作的摊还代价</strong>：</p>
+<p>设第 <span class="arithmatex">\(i\)</span> 次加一操作翻转了 <span class="arithmatex">\(t\)</span> 位。其中 <span class="arithmatex">\(t-1\)</span> 位是从 1 翻为 0（连续的末尾 1），1 位是从 0 翻为 1（第一个遇到的 0）。</p>
+<p>因此：</p>
+<ul>
+<li>实际代价：<span class="arithmatex">\(c_i = t\)</span></li>
+<li>势能变化：<span class="arithmatex">\(\Phi(D_i) - \Phi(D_{i-1}) = 1 - (t-1) = 2 - t\)</span>（少了 <span class="arithmatex">\(t-1\)</span> 个 1，多了 1 个 1）</li>
+</ul>
+<p>摊还代价：</p>
+<p><span class="arithmatex">\(\hat{c}_i = c_i + \Phi(D_i) - \Phi(D_{i-1}) = t + (2 - t) = 2\)</span></p>
+<p>每次操作的摊还代价均为 <span class="arithmatex">\(O(1)\)</span>。</p>
+<p>由定理 1.1，总实际代价不超过总摊还代价：</p>
+<p><span class="arithmatex">\(\sum_{i=1}^{n} c_i \le \sum_{i=1}^{n} \hat{c}_i = 2n = O(n)\)</span></p>
+<p>结论：<span class="arithmatex">\(n\)</span> 次加一操作的总代价为 <span class="arithmatex">\(O(n)\)</span>。</p>
+<hr />
+<h2 id="_5">经典应用：区间开根号<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 问题描述<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>给定长度为 <span class="arithmatex">\(n\)</span> 的正整数序列 <span class="arithmatex">\(a_1, a_2, \dots, a_n\)</span>，支持两种操作：</p>
+<ol>
+<li><strong>区间开根号</strong>：对所有 <span class="arithmatex">\(i \in [l, r]\)</span>，令 <span class="arithmatex">\(a_i \leftarrow \lfloor \sqrt{a_i} \rfloor\)</span>。</li>
+<li><strong>区间求和</strong>：求 <span class="arithmatex">\(\sum_{i=l}^{r} a_i\)</span>。</li>
+</ol>
+<p>其中 <span class="arithmatex">\(n, q \le 10^5\)</span>，<span class="arithmatex">\(1 \le a_i \le 10^9\)</span>。</p>
+<h3 id="32">3.2 核心观察<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p><strong>引理 3.1</strong>：设 <span class="arithmatex">\(x\)</span> 为正整数，定义 <span class="arithmatex">\(f(x) = \lfloor \sqrt{x} \rfloor\)</span>。令 <span class="arithmatex">\(f^{(k)}(x)\)</span> 表示 <span class="arithmatex">\(f\)</span> 迭代 <span class="arithmatex">\(k\)</span> 次的结果。则对任意 <span class="arithmatex">\(x \le 10^9\)</span>，存在 <span class="arithmatex">\(k \le 5\)</span> 使得 <span class="arithmatex">\(f^{(k)}(x) = 1\)</span>。</p>
+<p><strong>证明</strong>：</p>
+<ul>
+<li><span class="arithmatex">\(10^9 \rightarrow 31622\)</span>（第 1 次）</li>
+<li><span class="arithmatex">\(31622 \rightarrow 177\)</span>（第 2 次）</li>
+<li><span class="arithmatex">\(177 \rightarrow 13\)</span>（第 3 次）</li>
+<li><span class="arithmatex">\(13 \rightarrow 3\)</span>（第 4 次）</li>
+<li><span class="arithmatex">\(3 \rightarrow 1\)</span>（第 5 次）</li>
+</ul>
+<p>且当 <span class="arithmatex">\(x = 1\)</span> 时，<span class="arithmatex">\(f(x) = 1\)</span>，不再变化。</p>
+<p>因此，每个元素至多被有效修改（值发生变化）5 次。</p>
+<h3 id="33">3.3 基于线段树的实现<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>使用线段树维护区间和与区间最大值。对于区间开根号操作：</p>
+<ul>
+<li>若区间最大值 <span class="arithmatex">\(\le 1\)</span>，则区间内所有值均为 1，无需修改，直接返回。</li>
+<li>否则，若当前节点为叶子节点，执行开根号。</li>
+<li>否则，递归处理左右子节点，然后更新当前节点信息。</li>
+</ul>
+<h3 id="34">3.4 势能分析<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<p><strong>定义势能函数</strong>：设 <span class="arithmatex">\(\Phi\)</span> 为所有线段树节点中，"区间内仍大于 1 的元素个数"的某种度量。更精确地，我们直接以"全体元素中大于 1 的个数"作为势能的等价物进行分析。</p>
+<p>更严谨地，我们采用如下论证：</p>
+<p>每个元素至多被有效修改（开根号后值变化）<span class="arithmatex">\(O(\log \log A)\)</span> 次，其中 <span class="arithmatex">\(A\)</span> 为值域上限。每次有效修改需要从根节点走到叶子节点，代价为 <span class="arithmatex">\(O(\log n)\)</span>。因此所有有效修改的总代价为 <span class="arithmatex">\(O(n \log \log A \cdot \log n)\)</span>。</p>
+<p>查询操作的代价为 <span class="arithmatex">\(O(\log n)\)</span>，共 <span class="arithmatex">\(q\)</span> 次，总查询代价为 <span class="arithmatex">\(O(q \log n)\)</span>。</p>
+<p>因此总时间复杂度为：</p>
+<p><span class="arithmatex">\(O((n \log \log A + q) \log n)\)</span></p>
+<blockquote>
+<p>注：本题也可以形式化地定义势能函数。例如令 <span class="arithmatex">\(\Phi = \sum_{i=1}^{n} k_i\)</span>，其中 <span class="arithmatex">\(k_i\)</span> 为 <span class="arithmatex">\(a_i\)</span> 还能被有效开根号的次数。每次有效开根号使 <span class="arithmatex">\(k_i\)</span> 减 1，势能减 1。初始势能为 <span class="arithmatex">\(O(n \log \log A)\)</span>。每次递归到叶子并有效修改时，势能至少减 1。递归路径上的内部节点代价可以分摊到叶子的有效修改上。</p>
+</blockquote>
+<h3 id="35">3.5 代码实现<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
+<div class="language-cpp highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">;</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100005</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="n">ll</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">SegTree</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">mx</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">push_up</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">].</span><span class="n">mx</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">mx</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">build</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">);</span>
+<span class="w">        </span><span class="n">build</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="n">push_up</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">update_sqrt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">mx</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ll</span><span class="p">)</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">update_sqrt</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">update_sqrt</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="n">push_up</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ll</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">query</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">query</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="n">seg</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="n">seg</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">op</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">seg</span><span class="p">.</span><span class="n">update_sqrt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="lowbit">进阶：区间加 lowbit 与公共低位后缀<a class="headerlink" href="#lowbit" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 问题描述（简化版）<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>给定长度为 <span class="arithmatex">\(n\)</span> 的正整数序列 <span class="arithmatex">\(a_1, a_2, \dots, a_n\)</span>，支持两种操作：</p>
+<ol>
+<li><strong>区间加 lowbit</strong>：对所有 <span class="arithmatex">\(i \in [l, r]\)</span>，令 <span class="arithmatex">\(a_i \leftarrow a_i + \operatorname{lowbit}(a_i)\)</span>，其中 <span class="arithmatex">\(\operatorname{lowbit}(x) = x \&amp; (-x)\)</span>。</li>
+<li><strong>区间求和</strong>：求 <span class="arithmatex">\(\sum_{i=l}^{r} a_i\)</span>。</li>
+</ol>
+<p>保证任意时刻均有 <span class="arithmatex">\(1 \le a_i &lt; 2^B\)</span>，其中 <span class="arithmatex">\(B = 50\)</span>。</p>
+<h3 id="42">4.2 末尾零数的单调性<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p><strong>定义 4.1</strong>：对正整数 <span class="arithmatex">\(x\)</span>，定义 <span class="arithmatex">\(\nu(x)\)</span> 为 <span class="arithmatex">\(x\)</span> 的二进制表示中末尾连续 0 的个数。即 <span class="arithmatex">\(\operatorname{lowbit}(x) = 2^{\nu(x)}\)</span>。</p>
+<p><strong>引理 4.1</strong>：对任意正整数 <span class="arithmatex">\(x\)</span>，有 <span class="arithmatex">\(\nu(x + \operatorname{lowbit}(x)) \ge \nu(x) + 1\)</span>。</p>
+<p><strong>证明</strong>：设 <span class="arithmatex">\(x\)</span> 的二进制末尾有 <span class="arithmatex">\(k\)</span> 个 0，则最低位的 1 在第 <span class="arithmatex">\(k\)</span> 位。加 <span class="arithmatex">\(\operatorname{lowbit}(x) = 2^k\)</span> 后，第 <span class="arithmatex">\(k\)</span> 位的 1 向前进位。若第 <span class="arithmatex">\(k+1\)</span> 位原为 0，则 <span class="arithmatex">\(\nu(x+\operatorname{lowbit}(x)) = k+1\)</span>；若第 <span class="arithmatex">\(k+1\)</span> 位原为 1，则继续进位，末尾零数进一步增加。因此总有 <span class="arithmatex">\(\nu(x + \operatorname{lowbit}(x)) \ge k + 1 = \nu(x) + 1\)</span>。</p>
+<p><strong>推论</strong>：每个元素至多经历 <span class="arithmatex">\(B\)</span> 次 lowbit 修改（因为 <span class="arithmatex">\(\nu(x) &lt; B\)</span>，每次至少 +1）。</p>
+<h3 id="43">4.3 简化版的势能分析<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p><strong>定义势能函数</strong>：</p>
+<p><span class="arithmatex">\(\Phi = \sum_{i=1}^{n} (B - \nu(a_i))\)</span></p>
+<ul>
+<li>初始势能：<span class="arithmatex">\(\Phi_0 \le Bn\)</span></li>
+<li>非负性：由 <span class="arithmatex">\(\nu(a_i) &lt; B\)</span> 保证</li>
+</ul>
+<p>每次有效修改（即元素值发生变化）时，<span class="arithmatex">\(\nu(a_i)\)</span> 至少增加 1，故势能至少减少 1。每次查询不改变势能。</p>
+<p>总有效修改次数不超过初始势能，即 <span class="arithmatex">\(O(Bn)\)</span>。</p>
+<p>使用树状数组或线段树维护，每次修改和查询的代价为 <span class="arithmatex">\(O(\log n)\)</span>。总时间复杂度为 <span class="arithmatex">\(O((Bn + q) \log n)\)</span>。</p>
+<h3 id="44">4.4 加一操作与公共低位后缀<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<p>现在引入加一操作（区间加 1），问题变得复杂，因为加一可以使偶数变为奇数，导致 <span class="arithmatex">\(\nu(x)\)</span> 减小。</p>
+<p><strong>定义 4.2</strong>：对于区间 <span class="arithmatex">\([l, r]\)</span>，定义其<strong>公共低位后缀长度</strong> <span class="arithmatex">\(k\)</span> 为最大的非负整数 <span class="arithmatex">\(k\)</span>，使得对任意 <span class="arithmatex">\(i, j \in [l, r]\)</span>，有 <span class="arithmatex">\(a_i \equiv a_j \pmod{2^k}\)</span>。</p>
+<p>换言之，区间内所有数的二进制最低 <span class="arithmatex">\(k\)</span> 位全部相同。</p>
+<p><strong>引理 4.2</strong>：对区间内所有数同时加上一个整数 <span class="arithmatex">\(d\)</span>，公共低位后缀长度不变。</p>
+<p><strong>证明</strong>：对任意 <span class="arithmatex">\(i, j\)</span>，有 <span class="arithmatex">\((a_i + d) - (a_j + d) = a_i - a_j\)</span>。若 <span class="arithmatex">\(a_i \equiv a_j \pmod{2^k}\)</span>，则 <span class="arithmatex">\(2^k \mid (a_i - a_j)\)</span>，故 <span class="arithmatex">\(2^k \mid ((a_i + d) - (a_j + d))\)</span>，即 <span class="arithmatex">\(a_i + d \equiv a_j + d \pmod{2^k}\)</span>。因此最大的 <span class="arithmatex">\(k\)</span> 不变。</p>
+<h3 id="45-lowbit">4.5 lowbit 修改的分类<a class="headerlink" href="#45-lowbit" title="Permanent link">&para;</a></h3>
+<p>设区间 <span class="arithmatex">\([l, r]\)</span> 的公共低位后缀长度为 <span class="arithmatex">\(k\)</span>，取区间首元素 <span class="arithmatex">\(v = a_l\)</span> 作为代表值。</p>
+<p><strong>情形 1</strong>：<span class="arithmatex">\(\nu(v) &lt; k\)</span>。</p>
+<p>此时 <span class="arithmatex">\(v\)</span> 的最低位 1 位于公共后缀内。由于所有数的最低 <span class="arithmatex">\(k\)</span> 位相同，每个数的最低位 1 也在第 <span class="arithmatex">\(\nu(v)\)</span> 位，故所有数的 <span class="arithmatex">\(\operatorname{lowbit}\)</span> 值相同，均为 <span class="arithmatex">\(2^{\nu(v)}\)</span>。</p>
+<p>因此，本次 lowbit 修改等价于区间统一加上 <span class="arithmatex">\(2^{\nu(v)}\)</span>。由引理 4.2，<span class="arithmatex">\(k\)</span> 不变。</p>
+<p><strong>情形 2</strong>：<span class="arithmatex">\(\nu(v) \ge k\)</span>。</p>
+<p>此时 <span class="arithmatex">\(v\)</span> 的最低 <span class="arithmatex">\(k\)</span> 位全为 0，所有数的最低 <span class="arithmatex">\(k\)</span> 位也全为 0。每个数的 <span class="arithmatex">\(\operatorname{lowbit}\)</span> 可能不同。分别执行加 lowbit 后，每个数的最低 <span class="arithmatex">\(k+1\)</span> 位均为 0（第 <span class="arithmatex">\(k\)</span> 位由 0 变 1 后再进位？需更细致分析）。</p>
+<p>更准确地说：修改后，新的公共低位后缀长度 <span class="arithmatex">\(k' \ge k + 1\)</span>。</p>
+<h3 id="46">4.6 线段树实现<a class="headerlink" href="#46" title="Permanent link">&para;</a></h3>
+<p>每个线段树节点维护以下信息：</p>
+<ul>
+<li><code>sum</code>：区间和</li>
+<li><code>val</code>：区间首元素的当前值（代表值）</li>
+<li><code>k</code>：公共低位后缀长度</li>
+<li><code>add</code>：加法懒标记</li>
+</ul>
+<p><strong>合并操作</strong>：
+设左子节点为 <span class="arithmatex">\(L\)</span>，右子节点为 <span class="arithmatex">\(R\)</span>，则父节点 <span class="arithmatex">\(P\)</span>：</p>
+<ul>
+<li><code>P.sum = L.sum + R.sum</code></li>
+<li><code>P.val = L.val</code></li>
+<li><code>P.k = min(L.k, R.k, ν(L.val xor R.val))</code></li>
+</ul>
+<p>其中约定 <span class="arithmatex">\(\nu(0) = B\)</span>。</p>
+<p><strong>正确性说明</strong>：</p>
+<ul>
+<li>左子区间内部的公共后缀长度为 <span class="arithmatex">\(L.k\)</span></li>
+<li>右子区间内部的公共后缀长度为 <span class="arithmatex">\(R.k\)</span></li>
+<li><span class="arithmatex">\(L.val\)</span> 与 <span class="arithmatex">\(R.val\)</span> 的异或值的末尾零数，即两个代表值的公共后缀长度</li>
+<li>三者取最小值，即为整个区间的公共后缀长度</li>
+</ul>
+<h3 id="47">4.7 势能分析<a class="headerlink" href="#47" title="Permanent link">&para;</a></h3>
+<p><strong>定义势能函数</strong>：</p>
+<p><span class="arithmatex">\(\Phi = \sum_{u \in T} (B - k_u)\)</span></p>
+<p>其中 <span class="arithmatex">\(T\)</span> 为线段树所有节点的集合，<span class="arithmatex">\(k_u\)</span> 为节点 <span class="arithmatex">\(u\)</span> 的公共低位后缀长度，<span class="arithmatex">\(B = 50\)</span>。</p>
+<p><strong>初始势能</strong>：线段树共有 <span class="arithmatex">\(O(n)\)</span> 个节点，每个节点的 <span class="arithmatex">\(B - k_u \le B\)</span>，故 <span class="arithmatex">\(\Phi_0 = O(Bn)\)</span>。</p>
+<p><strong>非负性</strong>：由 <span class="arithmatex">\(k_u \le B\)</span> 保证。</p>
+<p>下面分析各操作对势能的影响。</p>
+<h4 id="_6">查询操作<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>不修改任何值，势能不变。实际代价为 <span class="arithmatex">\(O(\log n)\)</span>。</p>
+<h4 id="2">区间加一操作（类型 2）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>对于完全覆盖的节点，由引理 4.2，<span class="arithmatex">\(k\)</span> 不变，势能不变。</p>
+<p>对于部分覆盖的节点，需要下传懒标记并递归。每层至多有 2 个部分覆盖节点，共 <span class="arithmatex">\(O(\log n)\)</span> 个。每个部分覆盖节点的 <span class="arithmatex">\(k\)</span> 可能下降，但下降幅度不超过 <span class="arithmatex">\(B\)</span>（从 <span class="arithmatex">\(B\)</span> 到 0）。</p>
+<p>因此，一次区间加一操作最多使势能增加 <span class="arithmatex">\(O(B \log n)\)</span>。</p>
+<h4 id="lowbit-1">区间加 lowbit 操作（类型 1）<a class="headerlink" href="#lowbit-1" title="Permanent link">&para;</a></h4>
+<p>我们按线段树的递归过程分析：</p>
+<ul>
+<li>若当前节点完全被覆盖且 <span class="arithmatex">\(\nu(val) &lt; k\)</span>：可以统一加 lowbit，<span class="arithmatex">\(k\)</span> 不变，势能不变。实际代价 <span class="arithmatex">\(O(1)\)</span>。</li>
+<li>若当前节点完全被覆盖但 <span class="arithmatex">\(\nu(val) \ge k\)</span>：不能统一处理，需要递归到子节点。递归返回后，由于子节点的 <span class="arithmatex">\(k\)</span> 均至少增加（情形 2），当前节点的 <span class="arithmatex">\(k\)</span> 也至少增加 1，势能至少减少 1。</li>
+<li>若当前节点部分覆盖：下传懒标记并递归。部分覆盖节点每层至多 2 个，共 <span class="arithmatex">\(O(\log n)\)</span> 个，其 <span class="arithmatex">\(k\)</span> 可能下降。</li>
+</ul>
+<p><strong>关键观察</strong>：每次"不能直接处理、需要展开"的完全覆盖节点，在修改完成后，其 <span class="arithmatex">\(k\)</span> 至少增加 1，势能至少减少 1。</p>
+<p>设全部操作中，这种"展开"的总次数为 <span class="arithmatex">\(X\)</span>。每次展开至少使势能减少 1。</p>
+<p>初始势能为 <span class="arithmatex">\(O(Bn)\)</span>。每次类型 2 操作最多补回 <span class="arithmatex">\(O(B \log n)\)</span> 的势能，<span class="arithmatex">\(q\)</span> 次操作最多补回 <span class="arithmatex">\(O(Bq \log n)\)</span>。</p>
+<p>由势能不能为负，有：</p>
+<p><span class="arithmatex">\(X \le O(Bn) + O(Bq \log n)\)</span></p>
+<p>加上查询操作和常规边界访问的代价 <span class="arithmatex">\(O(q \log n)\)</span>，总时间复杂度为：</p>
+<p><span class="arithmatex">\(T = O(Bn + Bq \log n)\)</span></p>
+<p>其中 <span class="arithmatex">\(B = 50\)</span>。</p>
+<h3 id="48">4.8 代码实现<a class="headerlink" href="#48" title="Permanent link">&para;</a></h3>
+<div class="language-cpp highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">;</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAXN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500005</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="n">ll</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">SegTree</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">__int128</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">add</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">MAXN</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">ctzll</span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">B</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">__builtin_ctzll</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="nf">lowbit</span><span class="p">(</span><span class="n">ll</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">push_up</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">].</span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">].</span><span class="n">val</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">({</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">].</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">].</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">ctzll</span><span class="p">(</span><span class="n">diff</span><span class="p">)});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">apply_add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="kt">__int128</span><span class="p">)</span><span class="n">d</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">val</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">add</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// k 不变：统一加法不改变公共低位后缀长度</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">push_down</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">add</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">apply_add</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">add</span><span class="p">);</span>
+<span class="w">            </span><span class="n">apply_add</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">add</span><span class="p">);</span>
+<span class="w">            </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+<span class="w">            </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+<span class="w">            </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">build</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">);</span>
+<span class="w">        </span><span class="n">build</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="n">push_up</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">modify</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">apply_add</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// type == 1: 加 lowbit</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctzll</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">val</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">apply_add</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">lowbit</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">val</span><span class="p">));</span>
+<span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="c1">// 不能统一处理，继续递归</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">push_down</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">modify</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">modify</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+<span class="w">        </span><span class="n">push_up</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">__int128</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">sum</span><span class="p">;</span>
+<span class="w">        </span><span class="n">push_down</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tr</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">__int128</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">query</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">query</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="n">seg</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="kt">__int128</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">putchar</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">'0'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">freopen</span><span class="p">(</span><span class="s">"rplrprq.in"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">);</span>
+<span class="w">    </span><span class="n">freopen</span><span class="p">(</span><span class="s">"rplrprq.out"</span><span class="p">,</span><span class="w"> </span><span class="s">"w"</span><span class="p">,</span><span class="w"> </span><span class="n">stdout</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">seg</span><span class="p">.</span><span class="n">build</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">seg</span><span class="p">.</span><span class="n">modify</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">__int128</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seg</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+<span class="w">            </span><span class="n">print</span><span class="p">(</span><span class="n">ans</span><span class="p">);</span>
+<span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="_7">总结与方法<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 势能法的适用场景<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p>势能法适用于满足以下特征的问题：</p>
+<ol>
+<li>存在某种"退化"操作，它使数据结构的某种度量朝着"更简单"的方向单调变化。</li>
+<li>存在另一种操作，它可能使数据结构"变复杂"，但其影响可以被限制。</li>
+<li>退化操作的总次数受限于初始状态与恢复操作的总影响。</li>
+</ol>
+<h3 id="52">5.2 设计势能函数的经验法则<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>势能函数候选</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开根号 / 取模 / 除法</td>
+<td>大于阈值的元素个数，或各元素的"剩余可操作次数"之和</td>
+</tr>
+<tr>
+<td>加 lowbit / 位操作</td>
+<td>末尾零数的补和</td>
+</tr>
+<tr>
+<td>排序 / 逆序对</td>
+<td>逆序对数量</td>
+</tr>
+<tr>
+<td>树结构</td>
+<td>子树大小之和、节点深度和</td>
+</tr>
+<tr>
+<td>自动机 / 状态机</td>
+<td>当前状态的某种度量</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心原则</strong>：令昂贵操作使势能严格减少，便宜操作使势能增加或不变。势能有上界，则昂贵操作的总次数受限。</p>
+<h3 id="53">5.3 分析步骤<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>识别单调性</strong>：找出操作中哪些是"退化"的（使数据更简单），哪些是"恢复"的。</li>
+<li><strong>定义势能函数</strong>：确保初始有界、始终非负、退化操作使其减少、恢复操作使其增加但增量可控。</li>
+<li><strong>计算摊还代价</strong>：对每种操作，建立实际代价与势能变化的关系。</li>
+<li><strong>求和得界</strong>：累加所有操作的摊还代价，得到总代价上界。</li>
+</ol>
+<hr>
+<section class="oi-backlinks">
+<h2 id="oi-backlinks">反向链接 <span class="oi-count">2</span></h2>
+<ul>
+<li><a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%86%E6%B2%BB%E4%B8%8E%E6%8A%80%E5%B7%A7/">MOC - 分治与技巧</a></li>
+<li><a href="../../../00_%E7%B4%A2%E5%BC%95/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88CSP-J%E2%86%92CSP-S%E2%86%92NOI%EF%BC%89/">学习路线（CSP-J→CSP-S→NOI）</a></li>
+</ul>
+</section>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      内容仅供学习交流
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../../assets/katex/katex.min.js"></script>
+      
+        <script src="../../../assets/katex/auto-render.min.js"></script>
+      
+        <script src="../../../assets/js/katex-init.js"></script>
+      
+        <script src="../../../assets/js/copy-code.js"></script>
+      
+    
+  </body>
+</html>

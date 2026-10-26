@@ -1,0 +1,8764 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="信息学竞赛讲义、题解与集训复盘">
+      
+      
+      
+      
+        <link rel="prev" href="../%E6%95%B0%E8%AE%BA/">
+      
+      
+        <link rel="next" href="../%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>数论：组合数学与计数原理 - 吕望殊的 OI 笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/oi.css">
+    
+      <link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="吕望殊的 OI 笔记" class="md-header__button md-logo" aria-label="吕望殊的 OI 笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            吕望殊的 OI 笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              数论：组合数学与计数原理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/00%20%E6%80%BB%E8%A7%88/" class="md-tabs__link">
+          
+  
+  
+  总览
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E5%AD%A6/" class="md-tabs__link">
+          
+  
+  
+  讲义
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%A2%98%E8%A7%A3%E6%80%BB%E8%A7%88/" class="md-tabs__link">
+          
+  
+  
+  题解
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%9B%86%E8%AE%AD%E4%B8%8E%E6%AF%94%E8%B5%9B/" class="md-tabs__link">
+          
+  
+  
+  集训与比赛
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="md-tabs__link">
+          
+  
+  
+  站点
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="吕望殊的 OI 笔记" class="md-nav__button md-logo" aria-label="吕望殊的 OI 笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    吕望殊的 OI 笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总览
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    总览
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/00%20%E6%80%BB%E8%A7%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00 总览
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%86%E6%B2%BB%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 分治与技巧
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 初赛与应试
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 动态规划
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8D%9A%E5%BC%88%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 博弈论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 图论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 字符串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数学
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数据结构
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%9B%86%E8%AE%AD%E4%B8%8E%E6%AF%94%E8%B5%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 集训与比赛
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%A2%98%E8%A7%A3%E6%80%BB%E8%A7%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 题解总览
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88CSP-J%E2%86%92CSP-S%E2%86%92NOI%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习路线（CSP-J→CSP-S→NOI）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/%E6%A0%87%E7%AD%BE%E4%B8%8E%E5%AD%97%E6%AE%B5%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标签与字段规范
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    讲义
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    讲义
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数学
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exBSGS%20%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    exBSGS 算法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%8E%9F%E6%A0%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原根（Primitive Root）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%90%8C%E4%BD%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    同余
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数论：组合数学与计数原理
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数论：组合数学与计数原理
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-64902f04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 计数原理与计数方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 计数原理与计数方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s-b9a514c8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 排列数与组合数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s-ef1cd673" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 组合数的三种计算方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-89d784ae" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 计数方法（捆绑 / 插空 / 隔板）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 计数方法（捆绑 / 插空 / 隔板）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 相邻元素捆绑法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 不相邻元素插空法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 相同元素隔板法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三大方法对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-1178d63c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 重要恒等式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 重要恒等式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 对称恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 吸收 / 提取恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 上指标求和恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 范德蒙德卷积 / 下指标卷积
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 上指标卷积
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        恒等式速查表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-c624e9e8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 二项式定理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 二项式定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定理内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        组合理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        特殊情形
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ab4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例：展开 \((a+b)^4\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-f1b50b6b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 二项式定理的直接推论
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 二项式定理的直接推论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 1：子集总数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 2：奇偶项之差为零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 3：平方和恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-sum-kbinomnk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 4：求和 \(\sum k\binom{n}{k}\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-sum-k2binomnk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 5：求和 \(\sum k^2\binom{n}{k}\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论速查表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-a548216d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lucas 定理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Lucas 定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定理内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        递推形式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        递归深度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-40132527" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 组合数的单调性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 组合数的单调性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单峰性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比值法证明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关于 \(n\) 的单调性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-c256dd2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 不定方程的解数问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 不定方程的解数问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-ge-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 正整数解（每变量 \(\ge 1\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-ge-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 非负整数解（每变量 \(\ge 0\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-x_i-ge-a_i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 下界限制（\(x_i \ge a_i\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-a_i-le-x_i-le-b_i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 上下界限制（\(a_i \le x_i \le b_i\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-59e4a433" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 鸽巢原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 鸽巢原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 普通鸽巢原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-79cea7ce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 容斥原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 容斥原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二集合、三集合情形
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        子集枚举实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        容斥原理核心公式速查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关题目
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    期望
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    矩阵快速幂
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线性代数基础
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%84%E5%90%88%E6%95%B0%E8%AE%A1%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组合数计算
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 数据结构
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/RMQ%20%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMQ 问题
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../04_%E6%A8%A1%E6%9D%BF/%E7%AB%9E%E8%B5%9B%E6%A8%A1%E6%9D%BF%EF%BC%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    竞赛模板 (数据结构)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    笛卡尔树
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    图论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 图论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/2-SAT%20%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2-SAT 算法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/Tarjan%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%97%A0%E5%90%91%E5%9B%BE%E8%BF%9E%E9%80%9A%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tarjan 算法与无向图连通性（割点与桥）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E8%AE%BA%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%EF%BC%8C%E5%88%86%E5%B1%82%E5%9B%BE%EF%BC%8C%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%EF%BC%88Boruvka%EF%BC%89%EF%BC%8C%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E8%AE%BA%EF%BC%9ALCA%E3%80%81%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84%E3%80%81%E6%A0%91%E7%9A%84%E9%87%8D%E5%BF%83%E3%80%81%E4%BA%8C%E5%88%86%E5%9B%BE%E4%B8%8E%20Tarjan%20%E7%BC%A9%E7%82%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图论：LCA、树的直径、树的重心、二分图与 Tarjan 缩点
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_%E5%9B%BE%E8%AE%BA/%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E4%B8%8E%E6%AC%A7%E6%8B%89%E9%80%9A%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欧拉回路与欧拉通路
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    字符串
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 字符串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/AC%20%E8%87%AA%E5%8A%A8%E6%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AC 自动机
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/KMP%20%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KMP 算法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E5%85%B8%E6%A0%91%20Trie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字典树 *Trie*
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串哈希
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态规划
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    动态规划
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 动态规划
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/LIS%20%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LIS 最长上升子序列
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%8A%A8%E6%80%81%20DP%EF%BC%88DDP%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态 DP（DDP）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96%20DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    单调队列优化 DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E5%B8%A6%E6%9D%83%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    带权区间调度问题
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%95%B0%E4%BD%8D%20DP%20%E8%BF%9B%E9%98%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数位 DP 进阶
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96%20DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    斜率优化 DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%A0%91%E5%BD%A2%20DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    树形 DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%8A%B6%E5%8E%8BDP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    状压DP
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E7%BA%BF%E6%80%A7DP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线性DP专题笔记 Day1
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分治与技巧
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    分治与技巧
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%86%E6%B2%BB%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 分治与技巧
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_%E5%88%86%E6%B2%BB%E4%B8%8E%E6%8A%80%E5%B7%A7/%E5%88%86%E6%B2%BB%EF%BC%9A%E5%BA%8F%E5%88%97%E5%88%86%E6%B2%BB%EF%BC%88CDQ%EF%BC%89%E4%B8%8E%E7%82%B9%E5%88%86%E6%B2%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    分治：序列分治（CDQ）与点分治
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_%E5%88%86%E6%B2%BB%E4%B8%8E%E6%8A%80%E5%B7%A7/%E5%8A%BF%E8%83%BD%E5%88%86%E6%9E%90%EF%BC%88%E6%91%8A%E8%BF%98%E5%88%86%E6%9E%90%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    势能分析（摊还分析）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    博弈论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    博弈论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%8D%9A%E5%BC%88%E8%AE%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 博弈论
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_%E5%8D%9A%E5%BC%88%E8%AE%BA/%E5%8D%9A%E5%BC%88%E8%AE%BA%EF%BC%9AICG%20%E4%B8%8E%E6%9C%89%E5%90%91%E5%9B%BE%E6%B8%B8%E6%88%8F%20%C2%B7%20SG%20%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    博弈论：ICG 与有向图游戏 · SG 函数
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    初赛与应试
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    初赛与应试
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 初赛与应试
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E5%88%9D%E8%B5%9B%E7%B2%BE%E8%AE%B2%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97%E4%B8%8E%E7%BC%96%E7%A0%81%E7%B1%BB%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 初赛精讲：位运算与编码类技巧
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%20%E5%8D%95%E9%80%89%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%E9%80%9F%E8%AE%B0%E5%8D%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲 单选高频考点速记卡
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E5%9B%BE%E8%AE%BA%E3%80%81%E6%A0%91%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：图论、树与数据结构
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E5%A4%8D%E6%9D%82%E5%BA%A6%E3%80%81%E4%B8%BB%E5%AE%9A%E7%90%86%E3%80%81%E8%AF%AD%E8%A8%80%E7%BB%86%E8%8A%82%E4%B8%8E%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：复杂度、主定理、语言细节与编程环境
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E6%95%B0%E8%AE%BA%E4%B8%8E%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：数论与概率期望
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_%E5%88%9D%E8%B5%9B%E4%B8%8E%E5%BA%94%E8%AF%95/CSP-S%20%E7%B2%BE%E8%AE%B2%EF%BC%9A%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 精讲：组合数学
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    题解
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%A2%98%E8%A7%A3%E6%80%BB%E8%A7%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 题解总览
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    洛谷（22）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    洛谷（22）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P1081%20NOIP%202012%20%E6%8F%90%E9%AB%98%E7%BB%84%20%E5%BC%80%E8%BD%A6%E6%97%85%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1081 [NOIP 2012 提高组] 开车旅行
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P1117%20NOI2016%20%E4%BC%98%E7%A7%80%E7%9A%84%E6%8B%86%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1117 [NOI2016] 优秀的拆分
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P11694%20JRKSJ%20ExR%20%E6%B7%87%E5%AE%9D%E7%9A%84%E5%88%92%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P11694 [JRKSJ ExR] 淇宝的划分
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P12960%20%E6%AF%92%E8%8D%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P12960 毒药
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P12961%20%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P12961 树
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P17277%20Gift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P17277 Gift
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P17278%20Hikari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P17278 Hikari
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P17723%20SCP-S%202026%20%E5%87%BD%E6%95%B0%20%C2%B7%20func/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P17723 [SCP-S 2026] 函数 / func
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P2375%20NOI2014%20%E5%8A%A8%E7%89%A9%E5%9B%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P2375 [NOI2014] 动物园
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3029%20USACO11NOV%20Cow%20Lineup%20S%E2%80%94%E2%80%94%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%94%B6%E7%BC%A9%E9%A1%BA%E5%BA%8F%E7%9A%84%E8%87%B4%E5%91%BD%E7%BB%86%E8%8A%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3029 USACO11NOV Cow Lineup S——滑动窗口收缩顺序的致命细节
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3067%20USACO12OPEN%20Balanced%20Cow%20Subsets%20G/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3067 [USACO12OPEN] Balanced Cow Subsets G
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3225%20HNOI2012%20%E7%9F%BF%E5%9C%BA%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3225 [HNOI2012] 矿场搭建
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P3237%20ZJOI2014%20%E7%BD%91%E7%BB%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3237 [ZJOI2014] 网络
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P5324%20BJOI2019%20%E5%88%A0%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P5324 [BJOI2019] 删数
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P5336%20%E6%88%90%E7%BB%A9%E5%8D%95%EF%BC%88%E5%8C%BA%E9%97%B4%20DP%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P5336 成绩单 (区间DP)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P6534%20COCI%202015-2016%20No.1%20UZASTOPNI%20%E7%AD%89%E5%B7%AE%E6%A0%91%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P6534 [COCI 2015/2016 #1] UZASTOPNI 等差树列
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P7668%20JOI%202018%20Final%20%E5%9B%A2%E5%AD%90%E5%88%B6%E4%BD%9C%20%C2%B7%20Dango%20Maker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P7668 [JOI 2018 Final] 团子制作 / Dango Maker
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P7929%20COCI%202021-2022%20No.1%20Logi%C4%8Dari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P7929 [COCI 2021/2022 #1] Logičari
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8365%20LNOI2022%20%E5%90%83%EF%BC%88%E8%B4%AA%E5%BF%83%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8365 [LNOI2022] 吃（贪心）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8564%20%E6%A0%91%E4%B8%8A%E8%83%8C%E5%8C%85/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8564 ρars/ey 题解 (树上背包)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8595%20%E4%B8%80%E4%B8%AA%E7%BD%91%E7%9A%84%E8%B7%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8595「KDOI-02」一个网的路
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/P8981%20%E3%80%8CDROI%E3%80%8DRound%201%20%E8%B7%9D%E7%A6%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8981 「DROI」Round 1 距离
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Codeforces（4）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Codeforces（4）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF1144G%20Two%20Merged%20Sequences/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF1144G Two Merged Sequences
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF1882D%20Tree%20XOR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF1882D Tree XOR
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF813D%20Two%20Melodies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF813D Two Melodies
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CF916E%20Jamie%20and%20Tree%EF%BC%88LCA%20%E4%B8%8E%E5%80%8D%E5%A2%9E%E4%B8%93%E9%A2%98%E5%A4%8D%E7%9B%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CF916E Jamie and Tree
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AtCoder（2）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AtCoder（2）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/AT_dp_t%20Permutation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AT_dp_t Permutation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/ABC282G%20Similar%20Permutation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [ABC282G] Similar Permutation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    内部模拟赛（6）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    内部模拟赛（6）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T1%20%E7%A7%B0%E9%87%8D%EF%BC%88weight%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T1 称重（weight）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T2%20%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%EF%BC%88lis%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T2 最长上升子序列（lis）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T3%20%E5%BD%92%E5%B1%9E%E9%98%88%E5%80%BC%EF%BC%88claims%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T3 归属阈值（claims）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T3%20%E6%B6%82%E9%B8%A6%E5%B8%A6%E5%B8%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T3 涂鸦带师
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T3%20%E8%B5%9B%E8%BD%A6%E6%AF%94%E8%B5%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T3 赛车比赛
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/T4%20%E5%B7%A6%E5%8F%B3%E6%A8%AA%E8%B7%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T4 左右横跳
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自主题解（30）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    自主题解（30）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%8E%84%E8%BF%90%E6%95%B0%E5%AD%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B. 厄运数字
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E9%87%8D%E7%94%9F%E6%88%90%E7%8C%AA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C. 重生成猪
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/CSP-S%202020%20%E8%B4%AA%E5%90%83%E8%9B%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP-S 2020 贪吃蛇（NOI/NOI+/CTS）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/U745743%20%E5%8A%A0%E6%9D%83%E8%B7%9D%E7%A6%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    U745743 加权距离
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--待补"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/Yet%20Another%20Array%20Counting%20Problem%EF%BC%88NOIP%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yet Another Array Counting Problem(NOIP)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%81%9C%E8%BD%A6%E5%9C%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    停车场
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%AD%90%E9%9B%86%E7%BB%9F%E8%AE%A1%EF%BC%88%E8%83%8C%E5%8C%85%20DP%20%E4%B8%93%E9%A2%98%E5%A4%8D%E7%9B%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    子集统计 题解 （背包DP 专题赛复盘）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    家庭作业
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%B7%9D%E5%89%A7%E5%A4%8D%E6%BC%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    川剧复演
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%B9%B8%E8%BF%90%E4%B8%B2%E4%B8%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    幸运串串
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%89%AD%E5%8A%A8%E7%9A%84%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    扭动的树
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%8A%9B%E6%8E%B7%E7%A1%AC%E5%B8%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    抛掷硬币
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%95%B0%E5%88%97%E6%B1%82%E5%80%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数列求值
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    斐波那契
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%96%B9%E9%98%B5%E6%B8%B8%E6%88%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    方阵游戏
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%9C%80%E5%BC%BA%E8%BE%85%E5%8A%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    最强辅助
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%87%83%E7%83%A7%E7%81%AB%E7%84%B0%EF%BC%88%E6%9C%80%E7%9F%AD%E8%B7%AF%E4%B8%93%E9%A2%98%E5%A4%8D%E7%9B%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    燃烧火焰
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%99%BB%E5%BD%95%E6%97%A5%E5%BF%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    登录日志
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%A7%AF%E6%9C%A8%E6%B8%B8%E6%88%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    积木游戏
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E7%A8%B3%E7%A8%B3%E7%9F%A9%E9%98%B5%EF%BC%88T2%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    稳稳矩阵（T2）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%9C%9C%E9%9B%AA%E5%86%B0%E5%9F%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    蜜雪冰城
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B0%83%E6%9F%A5%E8%B4%A6%E6%9C%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    调查账本
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B7%AF%E5%BE%84%E7%BB%9F%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    路径统计
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B7%B3%E7%9F%B3%E5%A4%B4%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    跳石头题
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E8%B7%B3%E8%B7%83%E6%AD%A5%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    跳跃步数
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E9%9B%86%E5%90%88%E5%88%92%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集合划分
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%B6%82%E8%89%B2%E6%96%B9%E6%A1%88%EF%BC%88T1%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解 涂色方案(T1)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E6%97%A0%E9%85%92%E7%B2%BE%E6%97%A5%EF%BC%88T2%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解：无酒精日 (T2)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02_%E9%A2%98%E8%A7%A3/%E9%92%B1%E4%BB%93%E9%97%AE%E9%A2%98%EF%BC%88T3%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    题解：钱仓问题 (T3)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集训与比赛
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    集训与比赛
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E9%9B%86%E8%AE%AD%E4%B8%8E%E6%AF%94%E8%B5%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOC - 集训与比赛
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--进行中"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/2026-10%20%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026 · 10 做题记录 (每日更新)
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/Vjudge%20%E9%A2%98%E5%8D%95%EF%BC%88%E5%9B%BD%E5%BA%86%E9%9B%86%E8%AE%AD%E4%B8%93%E9%A2%98%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vjudge 题单（国庆集训专题）
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/%E6%9A%91%E6%9C%9F%E4%BF%A1%E5%A5%A5%E9%9B%86%E8%AE%AD%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    暑期信奥集训总结
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03_%E9%9B%86%E8%AE%AD%E5%A4%8D%E7%9B%98/%E6%9A%91%E6%9C%9F%E9%9B%86%E8%AE%AD%20%C2%B7%20%E5%89%8D12%20%E5%A4%A9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    暑期集训 · 前12 天学习总结
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--已完成"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    站点
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    站点
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    知识图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    标签索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-64902f04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 计数原理与计数方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 计数原理与计数方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s-b9a514c8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 排列数与组合数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s-ef1cd673" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 组合数的三种计算方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-89d784ae" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 计数方法（捆绑 / 插空 / 隔板）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 计数方法（捆绑 / 插空 / 隔板）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 相邻元素捆绑法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 不相邻元素插空法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 相同元素隔板法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三大方法对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-1178d63c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 重要恒等式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 重要恒等式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 对称恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 吸收 / 提取恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 上指标求和恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 范德蒙德卷积 / 下指标卷积
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 上指标卷积
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        恒等式速查表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-c624e9e8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 二项式定理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 二项式定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定理内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        组合理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        特殊情形
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ab4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例：展开 \((a+b)^4\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-f1b50b6b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 二项式定理的直接推论
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 二项式定理的直接推论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 1：子集总数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 2：奇偶项之差为零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 3：平方和恒等式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-sum-kbinomnk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 4：求和 \(\sum k\binom{n}{k}\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-sum-k2binomnk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论 5：求和 \(\sum k^2\binom{n}{k}\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推论速查表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-a548216d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lucas 定理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Lucas 定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定理内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        递推形式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        递归深度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-40132527" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 组合数的单调性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 组合数的单调性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单峰性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比值法证明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关于 \(n\) 的单调性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-c256dd2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 不定方程的解数问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 不定方程的解数问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-ge-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 正整数解（每变量 \(\ge 1\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-ge-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 非负整数解（每变量 \(\ge 0\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-x_i-ge-a_i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 下界限制（\(x_i \ge a_i\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-a_i-le-x_i-le-b_i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 上下界限制（\(a_i \le x_i \le b_i\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-59e4a433" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 鸽巢原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 鸽巢原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 普通鸽巢原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s-79cea7ce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 容斥原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 容斥原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二集合、三集合情形
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        子集枚举实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        容斥原理核心公式速查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关题目
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法lucas" class="md-tag">算法/Lucas</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法二项式" class="md-tag">算法/二项式</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法容斥" class="md-tag">算法/容斥</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法排列组合" class="md-tag">算法/排列组合</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:算法组合数学" class="md-tag">算法/组合数学</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:类型讲义" class="md-tag">类型/讲义</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95/#tag:领域数学" class="md-tag">领域/数学</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="_1">数论：组合数学与计数原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="_2">目录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#s-64902f04">计数原理与计数方法</a>
+   - <a href="#s-b9a514c8">1.1 排列数与组合数</a>
+   - <a href="#s-ef1cd673">1.2 组合数的三种计算方法</a></li>
+<li><a href="#s-89d784ae">计数方法（捆绑 / 插空 / 隔板）</a></li>
+<li><a href="#s-1178d63c">重要恒等式</a></li>
+<li><a href="#s-c624e9e8">二项式定理</a></li>
+<li><a href="#s-f1b50b6b">二项式定理的直接推论</a></li>
+<li><a href="#s-a548216d">Lucas 定理</a></li>
+<li><a href="#s-40132527">组合数的单调性</a></li>
+<li><a href="#s-c256dd2c">不定方程的解数问题</a></li>
+<li><a href="#s-59e4a433">鸽巢原理</a></li>
+<li><a href="#s-79cea7ce">容斥原理</a></li>
+</ol>
+<hr />
+<h2 id="s-64902f04">1. 计数原理与计数方法<a class="headerlink" href="#s-64902f04" title="Permanent link">&para;</a></h2>
+<h3 id="s-b9a514c8">1.1 排列数与组合数<a class="headerlink" href="#s-b9a514c8" title="Permanent link">&para;</a></h3>
+<h4 id="permutation">排列数（Permutation）<a class="headerlink" href="#permutation" title="Permanent link">&para;</a></h4>
+<p>从 <span class="arithmatex">\(n\)</span> 个<strong>不同</strong>元素中取出 <span class="arithmatex">\(m\)</span> 个，<strong>按一定顺序排成一列</strong>的方案数：</p>
+<div class="arithmatex">\[
+A_n^m = P_n^m = \frac{n!}{(n-m)!} = n(n-1)(n-2)\cdots(n-m+1)
+\]</div>
+<blockquote>
+<p><strong>关键</strong>：<strong>有序</strong>。选出的顺序不同则方案不同。</p>
+</blockquote>
+<h4 id="combination">组合数（Combination）<a class="headerlink" href="#combination" title="Permanent link">&para;</a></h4>
+<p>从 <span class="arithmatex">\(n\)</span> 个<strong>不同</strong>元素中取出 <span class="arithmatex">\(m\)</span> 个，<strong>组成一个集合</strong>（不计顺序）的方案数：</p>
+<div class="arithmatex">\[
+\binom{n}{m} = C_n^m = \frac{n!}{m!\,(n-m)!} = \frac{A_n^m}{m!}
+\]</div>
+<blockquote>
+<p><strong>关键</strong>：<strong>无序</strong>。选出的元素相同则视为同一方案，与顺序无关。</p>
+</blockquote>
+<h4 id="_3">二者关系<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+A_n^m = \binom{n}{m} \times m!
+\]</div>
+<p>即：<strong>先选后排</strong>。先从 <span class="arithmatex">\(n\)</span> 个中选 <span class="arithmatex">\(m\)</span> 个（组合），再把这 <span class="arithmatex">\(m\)</span> 个排列（<span class="arithmatex">\(m!\)</span>）。</p>
+<h4 id="_4">基本性质<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">性质</th>
+<th style="text-align: left;">公式</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">对称性</td>
+<td style="text-align: left;"><span class="arithmatex">\(\dbinom{n}{m} = \dbinom{n}{n-m}\)</span></td>
+<td style="text-align: left;">补集思想</td>
+</tr>
+<tr>
+<td style="text-align: center;">边界</td>
+<td style="text-align: left;"><span class="arithmatex">\(\dbinom{n}{0} = \dbinom{n}{n} = 1\)</span></td>
+<td style="text-align: left;">空集唯一</td>
+</tr>
+<tr>
+<td style="text-align: center;">零值</td>
+<td style="text-align: left;"><span class="arithmatex">\(\dbinom{n}{m} = 0\ (m &gt; n)\)</span></td>
+<td style="text-align: left;">选不出比 <span class="arithmatex">\(n\)</span> 多的</td>
+</tr>
+<tr>
+<td style="text-align: center;">递推</td>
+<td style="text-align: left;"><span class="arithmatex">\(\dbinom{n}{m} = \dbinom{n-1}{m} + \dbinom{n-1}{m-1}\)</span></td>
+<td style="text-align: left;"><strong>核心递推</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="s-ef1cd673">1.2 组合数的三种计算方法<a class="headerlink" href="#s-ef1cd673" title="Permanent link">&para;</a></h3>
+<h4 id="1">方法 1：递推法（杨辉三角）<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<h5 id="_5">原理<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+<p>利用组合数的递推公式：</p>
+<div class="arithmatex">\[
+\binom{n}{m} = \binom{n-1}{m} + \binom{n-1}{m-1}
+\]</div>
+<p><strong>含义</strong>：<strong>考虑第 <span class="arithmatex">\(n\)</span> 个元素的去留</strong>——
+- 若<strong>不选</strong>第 <span class="arithmatex">\(n\)</span> 个元素，则从剩余 <span class="arithmatex">\(n-1\)</span> 个中选 <span class="arithmatex">\(m\)</span> 个：<span class="arithmatex">\(\binom{n-1}{m}\)</span>；
+- 若<strong>选</strong>第 <span class="arithmatex">\(n\)</span> 个元素，则从剩余 <span class="arithmatex">\(n-1\)</span> 个中再选 <span class="arithmatex">\(m-1\)</span> 个：<span class="arithmatex">\(\binom{n-1}{m-1}\)</span>。</p>
+<p>二者相加即为从 <span class="arithmatex">\(n\)</span> 个中选 <span class="arithmatex">\(m\)</span> 个的总方案数。</p>
+<h5 id="_6">杨辉三角<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<p>将 <span class="arithmatex">\(\binom{n}{m}\)</span> 排成三角形，每个数等于其<strong>正上方</strong>与<strong>左上方</strong>之和：</p>
+<div class="language-text highlight"><pre><span></span><code>n=0:        1
+n=1:       1 1
+n=2:      1 2 1
+n=3:     1 3 3 1
+n=4:    1 4 6 4 1
+n=5:   1 5 10 10 5 1
+</code></pre></div>
+<h5 id="on2-o1">代码（<span class="arithmatex">\(O(n^2)\)</span> 预处理，<span class="arithmatex">\(O(1)\)</span> 查询）<a class="headerlink" href="#on2-o1" title="Permanent link">&para;</a></h5>
+<div class="language-cpp highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAXN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2005</span><span class="p">;</span>
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">MAXN</span><span class="p">][</span><span class="n">MAXN</span><span class="p">];</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MOD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e9</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">][</span><span class="n">j</span><span class="mi">-1</span><span class="p">])</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MOD</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// C[i][j] = 0 for j &gt; i (默认为 0)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// 查询: C[n][m]</span>
+</code></pre></div>
+<h5 id="_7">适用场景<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">条件</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(n\)</span> 较小</td>
+<td style="text-align: left;">一般 <span class="arithmatex">\(n \le 2000\)</span>（<span class="arithmatex">\(n^2\)</span> 可接受）</td>
+</tr>
+<tr>
+<td style="text-align: left;">模数任意</td>
+<td style="text-align: left;"><strong>不要求模数为质数</strong>，这是其最大优势</td>
+</tr>
+<tr>
+<td style="text-align: left;">需要多次查询</td>
+<td style="text-align: left;">预处理后 <span class="arithmatex">\(O(1)\)</span> 查询</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>优势</strong>：当模数<strong>不是质数</strong>（如 <span class="arithmatex">\(p = 10^9+7\)</span> 的某些变体或 <span class="arithmatex">\(p\)</span> 为合数）时，逆元法失效，递推法仍然可用。</p>
+</blockquote>
+<hr />
+<h4 id="2">方法 2：定义法（阶乘 + 逆元，最高频）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<h5 id="_8">原理<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h5>
+<p>当模数 <span class="arithmatex">\(p\)</span> 为<strong>质数</strong>时，利用<strong>费马小定理</strong>求逆元：</p>
+<blockquote>
+<p><strong>费马小定理</strong>：若 <span class="arithmatex">\(p\)</span> 为质数且 <span class="arithmatex">\(\gcd(a, p) = 1\)</span>，则 <span class="arithmatex">\(a^{p-1} \equiv 1 \pmod{p}\)</span>，即 <span class="arithmatex">\(a^{-1} \equiv a^{p-2} \pmod{p}\)</span>。</p>
+</blockquote>
+<p>因此：</p>
+<div class="arithmatex">\[
+\binom{n}{m} = \frac{n!}{m!\,(n-m)!} \equiv n! \cdot (m!)^{-1} \cdot ((n-m)!)^{-1} \pmod{p}
+\]</div>
+<h5 id="_9">预处理步骤<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h5>
+<ol>
+<li><strong>预处理阶乘数组</strong>：<span class="arithmatex">\(\text{fact}[i] = i! \bmod p\)</span></li>
+<li><strong>预处理阶乘逆元数组</strong>：<span class="arithmatex">\(\text{inv\_fact}[i] = (i!)^{-1} \bmod p\)</span></li>
+<li><strong>组合数计算</strong>：</li>
+</ol>
+<div class="arithmatex">\[
+\binom{n}{m} = \text{fact}[n] \times \text{inv\_fact}[m] \times \text{inv\_fact}[n-m] \bmod p
+\]</div>
+<h5 id="_10">优化技巧：线性递推逆元<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h5>
+<p>直接对每个 <span class="arithmatex">\(\text{fact}[i]\)</span> 用快速幂求逆元，复杂度 <span class="arithmatex">\(O(n \log p)\)</span>。但可以<strong>优化到 <span class="arithmatex">\(O(n)\)</span></strong>：</p>
+<ol>
+<li>先用快速幂求出 <span class="arithmatex">\(\text{inv\_fact}[n] = (\text{fact}[n])^{p-2} \bmod p\)</span>；</li>
+<li>再<strong>倒推</strong>：</li>
+</ol>
+<div class="arithmatex">\[
+\text{inv\_fact}[i-1] = \text{inv\_fact}[i] \times i \bmod p
+\]</div>
+<p><strong>推导</strong>：因为 <span class="arithmatex">\(\text{inv\_fact}[i] = (i!)^{-1}\)</span>，而 <span class="arithmatex">\((i-1)! = i! / i\)</span>，所以：</p>
+<div class="arithmatex">\[
+((i-1)!)^{-1} = (i!)^{-1} \cdot i \pmod{p}
+\]</div>
+<h5 id="on-log-p-o1">代码（<span class="arithmatex">\(O(n + \log p)\)</span> 预处理，<span class="arithmatex">\(O(1)\)</span> 查询）<a class="headerlink" href="#on-log-p-o1" title="Permanent link">&para;</a></h5>
+<div class="language-cpp highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAXN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2e6</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MOD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e9</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w">  </span><span class="c1">// 质数</span>
+
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">fact</span><span class="p">[</span><span class="n">MAXN</span><span class="p">],</span><span class="w"> </span><span class="n">inv_fact</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
+
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">qpow</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">        </span><span class="n">b</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MOD</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">inv_fact</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qpow</span><span class="p">(</span><span class="n">fact</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="w"> </span><span class="n">MOD</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">MOD</span><span class="p">);</span><span class="w">  </span><span class="c1">// 费马小定理求逆元</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+<span class="w">        </span><span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inv_fact</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MOD</span><span class="p">;</span><span class="w">  </span><span class="c1">// 倒推</span>
+<span class="p">}</span>
+
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">C</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fact</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inv_fact</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MOD</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inv_fact</span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MOD</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="_11">适用场景<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">条件</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">模数为质数</td>
+<td style="text-align: left;"><strong>必须</strong>，否则费马小定理不适用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(n\)</span> 较大</td>
+<td style="text-align: left;">一般 <span class="arithmatex">\(n \le 10^6\)</span> 甚至更大</td>
+</tr>
+<tr>
+<td style="text-align: left;">需要多次查询</td>
+<td style="text-align: left;">预处理后 <span class="arithmatex">\(O(1)\)</span> 查询</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>最通用</strong></td>
+<td style="text-align: left;">算法竞赛中最常见的写法</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>：要求 <span class="arithmatex">\(n &lt; p\)</span>（否则阶乘中会出现 <span class="arithmatex">\(p\)</span> 的倍数，逆元不存在）。若 <span class="arithmatex">\(n \ge p\)</span>，需用 Lucas 定理。</p>
+</blockquote>
+<hr />
+<h4 id="_12">方法对比总结<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方法</th>
+<th style="text-align: center;">预处理复杂度</th>
+<th style="text-align: center;">查询复杂度</th>
+<th style="text-align: center;">空间</th>
+<th style="text-align: center;">模数要求</th>
+<th style="text-align: center;"><span class="arithmatex">\(n\)</span> 的范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">递推法（杨辉三角）</td>
+<td style="text-align: center;"><span class="arithmatex">\(O(n^2)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(O(1)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(O(n^2)\)</span></td>
+<td style="text-align: center;"><strong>任意</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(\le 2000\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">阶乘+逆元</td>
+<td style="text-align: center;"><span class="arithmatex">\(O(n+\log p)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(O(1)\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(O(n)\)</span></td>
+<td style="text-align: center;"><strong>质数</strong></td>
+<td style="text-align: center;"><span class="arithmatex">\(\le 10^6\)</span>，且 <span class="arithmatex">\(n &lt; p\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="s-89d784ae">2. 计数方法（捆绑 / 插空 / 隔板）<a class="headerlink" href="#s-89d784ae" title="Permanent link">&para;</a></h2>
+<p>这是解决<strong>排列组合应用题</strong>的三大经典技巧，核心思想是将复杂问题转化为标准模型。</p>
+<h3 id="21">2.1 相邻元素捆绑法<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<h4 id="_13">适用场景<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>要求某些元素<strong>必须相邻</strong>（排在一起）。</p>
+<h4 id="_14">步骤<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>捆绑</strong>：将必须相邻的 <span class="arithmatex">\(k\)</span> 个元素视为一个<strong>整体</strong>（"超级元素"）；</li>
+<li><strong>排序</strong>：将这个整体与其他元素一起全排列；</li>
+<li><strong>内部排序</strong>：被捆绑的 <span class="arithmatex">\(k\)</span> 个元素内部也要全排列（<span class="arithmatex">\(k!\)</span>）；</li>
+<li><strong>相乘</strong>：总方案数 = 整体排列数 × 内部排列数。</li>
+</ol>
+<h4 id="_15">公式<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p>若 <span class="arithmatex">\(k\)</span> 个元素必须相邻，共 <span class="arithmatex">\(n\)</span> 个元素：</p>
+<div class="arithmatex">\[
+\text{方案数} = (n - k + 1)! \times k!
+\]</div>
+<h4 id="_16">示例<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>5 人站一排，A 和 B 必须相邻，有多少种排法？</p>
+</blockquote>
+<ul>
+<li>将 A、B 捆绑为 1 个整体，现在共 <span class="arithmatex">\(5-2+1 = 4\)</span> 个"元素"；</li>
+<li>整体排列：<span class="arithmatex">\(4! = 24\)</span>；</li>
+<li>A、B 内部排列：<span class="arithmatex">\(2! = 2\)</span>；</li>
+<li>总方案数：<span class="arithmatex">\(24 \times 2 = 48\)</span>。</li>
+</ul>
+<h4 id="_17">多组捆绑<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>若有<strong>多组</strong>需要相邻的元素，分别捆绑、各自内部全排列，再一起全排列：</p>
+<div class="arithmatex">\[
+\text{方案数} = (\text{总元素数})! \times \prod_{\text{每组}} (组内元素数)!
+\]</div>
+<hr />
+<h3 id="22">2.2 不相邻元素插空法<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<h4 id="_18">适用场景<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>要求某些元素<strong>互不相邻</strong>（任意两个之间至少有一个其他元素）。</p>
+<h4 id="_19">步骤<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>先排其他元素</strong>：将<strong>没有不相邻要求</strong>的元素先排好；</li>
+<li><strong>找空隙</strong>：排好后形成若干"空隙"（包括两端），<span class="arithmatex">\(m\)</span> 个元素排好后有 <span class="arithmatex">\(m+1\)</span> 个空隙；</li>
+<li><strong>插入</strong>：将要求不相邻的元素<strong>插入</strong>这些空隙中，选位置并排列。</li>
+</ol>
+<h4 id="_20">公式<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>若有 <span class="arithmatex">\(n\)</span> 个元素，其中 <span class="arithmatex">\(k\)</span> 个必须互不相邻，其余 <span class="arithmatex">\(n - k\)</span> 个无限制：</p>
+<div class="arithmatex">\[
+\text{方案数} = (n-k)! \times A_{n-k+1}^{k} = (n-k)! \times \binom{n-k+1}{k} \times k!
+\]</div>
+<blockquote>
+<p><strong>注意</strong>：要求 <span class="arithmatex">\(k \le n - k + 1\)</span>，否则无解（空位不够）。</p>
+</blockquote>
+<h4 id="_21">示例<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>5 人站一排，A 和 B 不相邻，有多少种排法？</p>
+</blockquote>
+<ul>
+<li>先排其余 3 人：<span class="arithmatex">\(3! = 6\)</span> 种；</li>
+<li>3 人排好后形成 <span class="arithmatex">\(3 + 1 = 4\)</span> 个空隙（含两端）；</li>
+<li>从 4 个空隙中选 2 个放 A、B 并排列：<span class="arithmatex">\(A_4^2 = 4 \times 3 = 12\)</span>；</li>
+<li>总方案数：<span class="arithmatex">\(6 \times 12 = 72\)</span>。</li>
+</ul>
+<h4 id="-">验证（总 - 相邻）<a class="headerlink" href="#-" title="Permanent link">&para;</a></h4>
+<p>总排列 <span class="arithmatex">\(5! = 120\)</span>，A、B 相邻 <span class="arithmatex">\(48\)</span> 种，不相邻 <span class="arithmatex">\(= 120 - 48 = 72\)</span>。✅</p>
+<hr />
+<h3 id="23">2.3 相同元素隔板法<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<h4 id="_22">适用场景<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p>将<strong>完全相同</strong>的物品分给<strong>不同</strong>的对象，每人至少分一个（或推广形式）。</p>
+<h4 id="_23">基本模型<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>将 <span class="arithmatex">\(n\)</span> 个<strong>相同</strong>的球放入 <span class="arithmatex">\(k\)</span> 个<strong>不同</strong>的盒子，每个盒子<strong>至少一个</strong>球，求方案数。</p>
+</blockquote>
+<p><strong>方法</strong>：将 <span class="arithmatex">\(n\)</span> 个球排成一排，中间有 <span class="arithmatex">\(n - 1\)</span> 个间隙，从中选 <span class="arithmatex">\(k - 1\)</span> 个位置插入"隔板"，将球分为 <span class="arithmatex">\(k\)</span> 组：</p>
+<div class="arithmatex">\[
+\text{方案数} = \binom{n-1}{k-1}
+\]</div>
+<h4 id="_24">示例<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>10 个相同的苹果分给 3 个小朋友，每人至少 1 个，多少种分法？</p>
+</blockquote>
+<div class="arithmatex">\[
+\binom{10-1}{3-1} = \binom{9}{2} = 36
+\]</div>
+<h4 id="0">推广：允许为 0（转化为非负整数解）<a class="headerlink" href="#0" title="Permanent link">&para;</a></h4>
+<p>若盒子<strong>可以为空</strong>（每人可以分 0 个），等价于求 <span class="arithmatex">\(x_1 + x_2 + \cdots + x_k = n\)</span> 的<strong>非负整数解</strong>数。</p>
+<p><strong>技巧</strong>：先给每个盒子<strong>虚放 1 个</strong>球（共 <span class="arithmatex">\(k\)</span> 个），问题转化为 <span class="arithmatex">\(n + k\)</span> 个球、每盒至少 1 个：</p>
+<div class="arithmatex">\[
+\text{方案数} = \binom{n+k-1}{k-1}
+\]</div>
+<blockquote>
+<p>详细推导见 <a href="#s-c256dd2c">第 8 节：不定方程的解数问题</a>。</p>
+</blockquote>
+<h4 id="_25">推广：下界限制<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p>若第 <span class="arithmatex">\(i\)</span> 个盒子至少 <span class="arithmatex">\(a_i\)</span> 个，先给每个盒子预放 <span class="arithmatex">\(a_i\)</span> 个，剩余 <span class="arithmatex">\(n - \sum a_i\)</span> 个自由分配（允许为 0）：</p>
+<div class="arithmatex">\[
+\text{方案数} = \binom{n - \sum a_i + k - 1}{k - 1}
+\]</div>
+<hr />
+<h3 id="_26">三大方法对比<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方法</th>
+<th style="text-align: left;">适用场景</th>
+<th style="text-align: left;">核心操作</th>
+<th style="text-align: center;">典型公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">捆绑法</td>
+<td style="text-align: left;">元素<strong>必须相邻</strong></td>
+<td style="text-align: left;">先捆后排</td>
+<td style="text-align: center;"><span class="arithmatex">\((n-k+1)! \times k!\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">插空法</td>
+<td style="text-align: left;">元素<strong>互不相邻</strong></td>
+<td style="text-align: left;">先排再插空</td>
+<td style="text-align: center;"><span class="arithmatex">\(A_{n-k+1}^k \times (n-k)!\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">隔板法</td>
+<td style="text-align: left;"><strong>相同</strong>元素分组</td>
+<td style="text-align: left;">插隔板分组</td>
+<td style="text-align: center;"><span class="arithmatex">\(\binom{n-1}{k-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="s-1178d63c">3. 重要恒等式<a class="headerlink" href="#s-1178d63c" title="Permanent link">&para;</a></h2>
+<p>组合数有大量优美的恒等式，它们是简化复杂求和、推导递推关系的利器。</p>
+<h3 id="31">3.1 对称恒等式<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\binom{n}{m} = \binom{n}{n-m}}
+\]</div>
+<p><strong>含义</strong>：从 <span class="arithmatex">\(n\)</span> 个中选 <span class="arithmatex">\(m\)</span> 个，等价于选 <span class="arithmatex">\(n - m\)</span> 个<strong>不选</strong>的（补集思想）。</p>
+<hr />
+<h3 id="32">3.2 吸收 / 提取恒等式<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\binom{n}{m} = \frac{n}{m}\binom{n-1}{m-1}}
+\]</div>
+<p><strong>推导</strong>：</p>
+<div class="arithmatex">\[
+\binom{n}{m} = \frac{n!}{m!(n-m)!} = \frac{n}{m} \cdot \frac{(n-1)!}{(m-1)!(n-m)!} = \frac{n}{m}\binom{n-1}{m-1}
+\]</div>
+<p><strong>用途</strong>：在求和中"吸收"或"提取"变量，化简含有 <span class="arithmatex">\(m\binom{n}{m}\)</span> 的求和式。</p>
+<p><strong>变体</strong>：</p>
+<div class="arithmatex">\[
+m\binom{n}{m} = n\binom{n-1}{m-1}
+\]</div>
+<hr />
+<h3 id="33">3.3 上指标求和恒等式<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{i=0}^{n}\binom{i}{m} = \binom{n+1}{m+1}}
+\]</div>
+<p><strong>含义</strong>：从 <span class="arithmatex">\(0\)</span> 到 <span class="arithmatex">\(n\)</span>，依次选 <span class="arithmatex">\(\binom{i}{m}\)</span>，总和等于 <span class="arithmatex">\(\binom{n+1}{m+1}\)</span>。</p>
+<p><strong>组合证明</strong>：<span class="arithmatex">\(\binom{n+1}{m+1}\)</span> 表示从 <span class="arithmatex">\(n+1\)</span> 个元素中选 <span class="arithmatex">\(m+1\)</span> 个。按<strong>选出的最大元素</strong>分类——若最大元素是第 <span class="arithmatex">\(i+1\)</span> 个（<span class="arithmatex">\(i\)</span> 从 <span class="arithmatex">\(m\)</span> 到 <span class="arithmatex">\(n\)</span>），则在前 <span class="arithmatex">\(i\)</span> 个中选 <span class="arithmatex">\(m\)</span> 个，方案数 <span class="arithmatex">\(\binom{i}{m}\)</span>。求和即得。</p>
+<blockquote>
+<p>也称为<strong>曲棍球恒等式</strong>（Hockey Stick Identity），因为杨辉三角中求和的路径形似曲棍球杆。</p>
+</blockquote>
+<hr />
+<h3 id="34">3.4 范德蒙德卷积 / 下指标卷积<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{i=0}^{k}\binom{n}{i}\binom{m}{k-i} = \binom{n+m}{k}}
+\]</div>
+<p><strong>含义</strong>：从 <span class="arithmatex">\(n\)</span> 个男生和 <span class="arithmatex">\(m\)</span> 个女生中选 <span class="arithmatex">\(k\)</span> 人，按选 <span class="arithmatex">\(i\)</span> 个男生、<span class="arithmatex">\(k-i\)</span> 个女生分类求和，等于直接从 <span class="arithmatex">\(n+m\)</span> 人中选 <span class="arithmatex">\(k\)</span> 人。</p>
+<hr />
+<h3 id="35">3.5 上指标卷积<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{i=0}^{n}\binom{i}{a}\binom{n-i}{b} = \binom{n+1}{a+b+1}}
+\]</div>
+<p><strong>含义</strong>：在 <span class="arithmatex">\(n+1\)</span> 个位置中选 <span class="arithmatex">\(a+b+1\)</span> 个，按"分界点 <span class="arithmatex">\(i\)</span>"分类——前 <span class="arithmatex">\(i\)</span> 个中选 <span class="arithmatex">\(a\)</span> 个，后 <span class="arithmatex">\(n-i\)</span> 个中选 <span class="arithmatex">\(b\)</span> 个。</p>
+<p><strong>与范德蒙德的关系</strong>：令 <span class="arithmatex">\(j = i\)</span>，这是范德蒙德卷积的另一种形式（上指标求和版）。</p>
+<hr />
+<h3 id="_27">恒等式速查表<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">名称</th>
+<th style="text-align: left;">公式</th>
+<th style="text-align: left;">一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">对称</td>
+<td style="text-align: left;"><span class="arithmatex">\(\binom{n}{m}=\binom{n}{n-m}\)</span></td>
+<td style="text-align: left;">选 = 不选</td>
+</tr>
+<tr>
+<td style="text-align: left;">吸收</td>
+<td style="text-align: left;"><span class="arithmatex">\(\binom{n}{m}=\frac{n}{m}\binom{n-1}{m-1}\)</span></td>
+<td style="text-align: left;">提取 <span class="arithmatex">\(n/m\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">上指标求和</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sum_{i=0}^n\binom{i}{m}=\binom{n+1}{m+1}\)</span></td>
+<td style="text-align: left;">曲棍球</td>
+</tr>
+<tr>
+<td style="text-align: left;">范德蒙德</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sum_i\binom{n}{i}\binom{m}{k-i}=\binom{n+m}{k}\)</span></td>
+<td style="text-align: left;">两组并一组</td>
+</tr>
+<tr>
+<td style="text-align: left;">上指标卷积</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sum_i\binom{i}{a}\binom{n-i}{b}=\binom{n+1}{a+b+1}\)</span></td>
+<td style="text-align: left;">分界分类</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="s-c624e9e8">4. 二项式定理<a class="headerlink" href="#s-c624e9e8" title="Permanent link">&para;</a></h2>
+<h3 id="_28">定理内容<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>对任意实数 <span class="arithmatex">\(a, b\)</span> 和非负整数 <span class="arithmatex">\(n\)</span>：</p>
+<div class="arithmatex">\[
+\boxed{(a+b)^n = \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^k = \binom{n}{0}a^n + \binom{n}{1}a^{n-1}b + \cdots + \binom{n}{n}b^n}
+\]</div>
+<p>其中 <span class="arithmatex">\(\binom{n}{k}\)</span> 称为<strong>二项式系数</strong>。</p>
+<h3 id="_29">组合理解<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\((a+b)^n\)</span> 是 <span class="arithmatex">\(n\)</span> 个 <span class="arithmatex">\((a+b)\)</span> 相乘，每个因子中选 <span class="arithmatex">\(a\)</span> 或 <span class="arithmatex">\(b\)</span>。展开式中 <span class="arithmatex">\(a^{n-k}b^k\)</span> 的系数，就是从 <span class="arithmatex">\(n\)</span> 个因子中选 <span class="arithmatex">\(k\)</span> 个取 <span class="arithmatex">\(b\)</span>（其余取 <span class="arithmatex">\(a\)</span>）的方案数，即 <span class="arithmatex">\(\binom{n}{k}\)</span>。</p>
+<h3 id="_30">特殊情形<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">取值</th>
+<th style="text-align: left;">结果</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(a=1,\ b=1\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(\displaystyle\sum_{k=0}^{n}\binom{n}{k} = 2^n\)</span></td>
+<td style="text-align: left;">子集总数</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(a=1,\ b=-1\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(\displaystyle\sum_{k=0}^{n}(-1)^k\binom{n}{k} = 0\)</span></td>
+<td style="text-align: left;">奇偶项抵消</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(a=1,\ b=x\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\((1+x)^n = \displaystyle\sum_{k=0}^{n}\binom{n}{k}x^k\)</span></td>
+<td style="text-align: left;">生成函数形式</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ab4">例：展开 <span class="arithmatex">\((a+b)^4\)</span><a class="headerlink" href="#ab4" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+(a+b)^4 = \binom{4}{0}a^4 + \binom{4}{1}a^3b + \binom{4}{2}a^2b^2 + \binom{4}{3}ab^3 + \binom{4}{4}b^4
+= a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4
+\]</div>
+<p>系数 <span class="arithmatex">\(1, 4, 6, 4, 1\)</span> 正是杨辉三角第 4 行。</p>
+<hr />
+<h2 id="s-f1b50b6b">5. 二项式定理的直接推论<a class="headerlink" href="#s-f1b50b6b" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">推论 1：子集总数<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{k=0}^{n}\binom{n}{k} = 2^n}
+\]</div>
+<p><strong>含义</strong>：<span class="arithmatex">\(n\)</span> 元素的集合的所有子集（包括空集和全集）总数为 <span class="arithmatex">\(2^n\)</span>。</p>
+<p><strong>证明</strong>：令 <span class="arithmatex">\(a = b = 1\)</span>，<span class="arithmatex">\((1+1)^n = 2^n\)</span>。</p>
+<hr />
+<h3 id="2_1">推论 2：奇偶项之差为零<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{k=0}^{n}(-1)^k\binom{n}{k} = 0 \quad (n \ge 1)}
+\]</div>
+<p><strong>含义</strong>：<span class="arithmatex">\(\binom{n}{0} + \binom{n}{2} + \binom{n}{4} + \cdots = \binom{n}{1} + \binom{n}{3} + \binom{n}{5} + \cdots = 2^{n-1}\)</span>。</p>
+<p><strong>证明</strong>：令 <span class="arithmatex">\(a = 1, b = -1\)</span>，<span class="arithmatex">\((1-1)^n = 0\)</span>。</p>
+<p><strong>推论</strong>：偶数大小的子集个数 = 奇数大小的子集个数 = <span class="arithmatex">\(2^{n-1}\)</span>。</p>
+<hr />
+<h3 id="3">推论 3：平方和恒等式<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{k=0}^{n}\binom{n}{k}^2 = \binom{2n}{n}}
+\]</div>
+<p><strong>证明</strong>：由范德蒙德卷积，<span class="arithmatex">\(\sum_k \binom{n}{k}\binom{n}{n-k} = \binom{2n}{n}\)</span>，而 <span class="arithmatex">\(\binom{n}{n-k} = \binom{n}{k}\)</span>。</p>
+<p><strong>含义</strong>：从 <span class="arithmatex">\(2n\)</span> 个人中选 <span class="arithmatex">\(n\)</span> 人，等于两组各 <span class="arithmatex">\(n\)</span> 人中分别选 <span class="arithmatex">\(k\)</span> 和 <span class="arithmatex">\(n-k\)</span> 人再求和。</p>
+<hr />
+<h3 id="4-sum-kbinomnk">推论 4：求和 <span class="arithmatex">\(\sum k\binom{n}{k}\)</span><a class="headerlink" href="#4-sum-kbinomnk" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{k=0}^{n}k\binom{n}{k} = n \cdot 2^{n-1}}
+\]</div>
+<p><strong>证明</strong>（用吸收恒等式）：</p>
+<div class="arithmatex">\[
+k\binom{n}{k} = n\binom{n-1}{k-1}
+\]</div>
+<div class="arithmatex">\[
+\sum_{k=1}^{n}k\binom{n}{k} = n\sum_{k=1}^{n}\binom{n-1}{k-1} = n\sum_{j=0}^{n-1}\binom{n-1}{j} = n \cdot 2^{n-1}
+\]</div>
+<hr />
+<h3 id="5-sum-k2binomnk">推论 5：求和 <span class="arithmatex">\(\sum k^2\binom{n}{k}\)</span><a class="headerlink" href="#5-sum-k2binomnk" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\boxed{\sum_{k=0}^{n}k^2\binom{n}{k} = n(n+1) \cdot 2^{n-2}}
+\]</div>
+<hr />
+<h3 id="_31">推论速查表<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">推论</th>
+<th style="text-align: left;">公式</th>
+<th style="text-align: center;">令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">子集总数</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sum\binom{n}{k}=2^n\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a=b=1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">奇偶抵消</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sum(-1)^k\binom{n}{k}=0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(a=1,b=-1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">平方和</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sum\binom{n}{k}^2=\binom{2n}{n}\)</span></td>
+<td style="text-align: center;">范德蒙德</td>
+</tr>
+<tr>
+<td style="text-align: center;">加权和</td>
+<td style="text-align: left;"><span class="arithmatex">\(\sum k\binom{n}{k}=n\cdot 2^{n-1}\)</span></td>
+<td style="text-align: center;">吸收恒等式</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="s-a548216d">6. Lucas 定理<a class="headerlink" href="#s-a548216d" title="Permanent link">&para;</a></h2>
+<h3 id="_32">定理内容<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(p\)</span> 为<strong>质数</strong>，<span class="arithmatex">\(n, m\)</span> 为非负整数。将 <span class="arithmatex">\(n, m\)</span> 用 <span class="arithmatex">\(p\)</span> 进制表示：</p>
+<div class="arithmatex">\[
+n = n_k p^k + n_{k-1}p^{k-1} + \cdots + n_1 p + n_0
+$$
+$$
+m = m_k p^k + m_{k-1}p^{k-1} + \cdots + m_1 p + m_0
+\]</div>
+<p>则：</p>
+<div class="arithmatex">\[
+\boxed{\binom{n}{m} \equiv \prod_{i=0}^{k}\binom{n_i}{m_i} \pmod{p}}
+\]</div>
+<p>即：<span class="arithmatex">\(\binom{n}{m} \bmod p\)</span> 等于 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(m\)</span> 的<strong>各 <span class="arithmatex">\(p\)</span> 进制位</strong>对应组合数的乘积。</p>
+<h3 id="_33">递推形式<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<p>更常用的写法：</p>
+<div class="arithmatex">\[
+\boxed{\binom{n}{m} \equiv \binom{n \bmod p}{m \bmod p} \times \binom{\lfloor n/p \rfloor}{\lfloor m/p \rfloor} \pmod{p}}
+\]</div>
+<h3 id="_34">适用场景<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">场景</th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(n, m\)</span> 很大</td>
+<td style="text-align: left;">如 <span class="arithmatex">\(n, m \le 10^{18}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">模数 <span class="arithmatex">\(p\)</span> 较小且为质数</td>
+<td style="text-align: left;">如 <span class="arithmatex">\(p \le 10^5\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(n \ge p\)</span></td>
+<td style="text-align: left;">此时阶乘逆元法失效（阶乘含 <span class="arithmatex">\(p\)</span> 的倍数）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_35">代码<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<div class="language-cpp highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MOD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e9</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w">  </span><span class="c1">// 这里以较小质数为例，实际 Lucas 多用于 p &lt;= 1e5</span>
+
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">qpow</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 预处理阶乘（模 p 内）</span>
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">fact</span><span class="p">[</span><span class="mi">100005</span><span class="p">];</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 单次组合数（模 p 内，要求 n &lt; p）</span>
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">C_p</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fact</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">qpow</span><span class="p">(</span><span class="n">fact</span><span class="p">[</span><span class="n">m</span><span class="p">],</span><span class="w"> </span><span class="n">p</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">qpow</span><span class="p">(</span><span class="n">fact</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">],</span><span class="w"> </span><span class="n">p</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Lucas 定理</span>
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">lucas</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">C_p</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lucas</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_36">递归深度<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<p>Lucas 定理的递归深度为 <span class="arithmatex">\(O(\log_p n)\)</span>，即 <span class="arithmatex">\(n\)</span> 的 <span class="arithmatex">\(p\)</span> 进制位数。</p>
+<h3 id="_37">例题<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>求 <span class="arithmatex">\(\binom{10^{18}}{10^{18}-1} \bmod 3\)</span>。</p>
+</blockquote>
+<p>由 Lucas 定理，不断取 <span class="arithmatex">\(p=3\)</span> 进制分解，最终化为若干 <span class="arithmatex">\(\binom{n_i}{m_i} \bmod 3\)</span> 的乘积，其中每个 <span class="arithmatex">\(n_i, m_i &lt; 3\)</span>。</p>
+<hr />
+<h2 id="s-40132527">7. 组合数的单调性<a class="headerlink" href="#s-40132527" title="Permanent link">&para;</a></h2>
+<h3 id="_38">单峰性<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
+<p>对于固定的 <span class="arithmatex">\(n\)</span>，<span class="arithmatex">\(\binom{n}{k}\)</span> 关于 <span class="arithmatex">\(k\)</span> 是<strong>先增后减</strong>的（单峰），在 <span class="arithmatex">\(k = \lfloor n/2 \rfloor\)</span> 附近取最大值。</p>
+<div class="arithmatex">\[
+\binom{n}{0} &lt; \binom{n}{1} &lt; \cdots &lt; \binom{n}{\lfloor n/2 \rfloor} \ge \binom{n}{\lfloor n/2 \rfloor + 1} &gt; \cdots &gt; \binom{n}{n}
+\]</div>
+<h3 id="_39">比值法证明<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\frac{\binom{n}{k}}{\binom{n}{k-1}} = \frac{n-k+1}{k}
+\]</div>
+<ul>
+<li>当 <span class="arithmatex">\(\frac{n-k+1}{k} &gt; 1\)</span>，即 <span class="arithmatex">\(k &lt; \frac{n+1}{2}\)</span> 时，<span class="arithmatex">\(\binom{n}{k}\)</span> 递增；</li>
+<li>当 <span class="arithmatex">\(k &gt; \frac{n+1}{2}\)</span> 时，递减；</li>
+<li><span class="arithmatex">\(n\)</span> 为偶数时，<span class="arithmatex">\(k = n/2\)</span> 处取唯一最大值 <span class="arithmatex">\(\binom{n}{n/2}\)</span>；</li>
+<li><span class="arithmatex">\(n\)</span> 为奇数时，<span class="arithmatex">\(k = (n-1)/2\)</span> 和 <span class="arithmatex">\(k = (n+1)/2\)</span> 处并列最大。</li>
+</ul>
+<h3 id="_40">应用<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>求最大组合数</strong>：<span class="arithmatex">\(\max_k \binom{n}{k} = \binom{n}{\lfloor n/2 \rfloor}\)</span>；</li>
+<li><strong>二分 / 三分优化</strong>：当需要找满足某条件的 <span class="arithmatex">\(k\)</span> 时，利用单调性优化；</li>
+<li><strong>放缩估计</strong>：<span class="arithmatex">\(\binom{n}{k} \le \binom{n}{\lfloor n/2 \rfloor}\)</span>。</li>
+</ul>
+<h3 id="n">关于 <span class="arithmatex">\(n\)</span> 的单调性<a class="headerlink" href="#n" title="Permanent link">&para;</a></h3>
+<p>对于固定的 <span class="arithmatex">\(k \ge 1\)</span>，<span class="arithmatex">\(\binom{n}{k}\)</span> 关于 <span class="arithmatex">\(n\)</span> <strong>严格递增</strong>：</p>
+<div class="arithmatex">\[
+\binom{n}{k} &lt; \binom{n+1}{k} \quad (k \ge 1)
+\]</div>
+<p>由 <span class="arithmatex">\(\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1} &gt; \binom{n}{k}\)</span> 即得。</p>
+<hr />
+<h2 id="s-c256dd2c">8. 不定方程的解数问题<a class="headerlink" href="#s-c256dd2c" title="Permanent link">&para;</a></h2>
+<p>这是<strong>隔板法</strong>的系统化应用。考虑不定方程：</p>
+<div class="arithmatex">\[
+x_1 + x_2 + \cdots + x_k = n
+\]</div>
+<h3 id="81-ge-1">8.1 正整数解（每变量 <span class="arithmatex">\(\ge 1\)</span>）<a class="headerlink" href="#81-ge-1" title="Permanent link">&para;</a></h3>
+<p><strong>条件</strong>：<span class="arithmatex">\(x_i \ge 1\)</span>（正整数），<span class="arithmatex">\(n \ge k\)</span>。</p>
+<p><strong>方法</strong>：<span class="arithmatex">\(n\)</span> 个相同球排成一排，<span class="arithmatex">\(n-1\)</span> 个间隙中插 <span class="arithmatex">\(k-1\)</span> 个隔板，分为 <span class="arithmatex">\(k\)</span> 组（每组至少 1 个）：</p>
+<div class="arithmatex">\[
+\boxed{\text{正整数解个数} = \binom{n-1}{k-1}}
+\]</div>
+<h4 id="_41">示例<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><span class="arithmatex">\(x_1 + x_2 + x_3 = 10\)</span>，<span class="arithmatex">\(x_i \ge 1\)</span> 的正整数解个数？</p>
+</blockquote>
+<div class="arithmatex">\[
+\binom{10-1}{3-1} = \binom{9}{2} = 36
+\]</div>
+<hr />
+<h3 id="82-ge-0">8.2 非负整数解（每变量 <span class="arithmatex">\(\ge 0\)</span>）<a class="headerlink" href="#82-ge-0" title="Permanent link">&para;</a></h3>
+<p><strong>条件</strong>：<span class="arithmatex">\(x_i \ge 0\)</span>（非负整数）。</p>
+<p><strong>方法</strong>：令 <span class="arithmatex">\(y_i = x_i + 1\)</span>，则 <span class="arithmatex">\(y_i \ge 1\)</span>，方程变为 <span class="arithmatex">\(y_1 + \cdots + y_k = n + k\)</span>，化为正整数解问题：</p>
+<div class="arithmatex">\[
+\boxed{\text{非负整数解个数} = \binom{n+k-1}{k-1} = \binom{n+k-1}{n}}
+\]</div>
+<p><strong>直观理解</strong>：<span class="arithmatex">\(n\)</span> 个相同球放入 <span class="arithmatex">\(k\)</span> 个不同盒子，允许空盒。先给每盒虚放 1 个（共 <span class="arithmatex">\(k\)</span>），再按正整数解处理。</p>
+<h4 id="_42">示例<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><span class="arithmatex">\(x_1 + x_2 + x_3 = 10\)</span>，<span class="arithmatex">\(x_i \ge 0\)</span> 的非负整数解个数？</p>
+</blockquote>
+<div class="arithmatex">\[
+\binom{10+3-1}{3-1} = \binom{12}{2} = 66
+\]</div>
+<hr />
+<h3 id="83-x_i-ge-a_i">8.3 下界限制（<span class="arithmatex">\(x_i \ge a_i\)</span>）<a class="headerlink" href="#83-x_i-ge-a_i" title="Permanent link">&para;</a></h3>
+<p><strong>条件</strong>：<span class="arithmatex">\(x_i \ge a_i\)</span>（<span class="arithmatex">\(a_i\)</span> 为给定常数）。</p>
+<p><strong>方法</strong>：令 <span class="arithmatex">\(y_i = x_i - a_i \ge 0\)</span>，方程变为 <span class="arithmatex">\(y_1 + \cdots + y_k = n - \sum a_i\)</span>，化为非负整数解：</p>
+<div class="arithmatex">\[
+\boxed{\text{解个数} = \binom{n - \sum_{i=1}^{k}a_i + k - 1}{k - 1}}
+\]</div>
+<blockquote>
+<p>要求 <span class="arithmatex">\(n \ge \sum a_i\)</span>，否则无解。</p>
+</blockquote>
+<h4 id="_43">示例<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><span class="arithmatex">\(x_1 + x_2 + x_3 = 10\)</span>，<span class="arithmatex">\(x_1 \ge 2,\ x_2 \ge 3,\ x_3 \ge 1\)</span>。</p>
+</blockquote>
+<p><span class="arithmatex">\(\sum a_i = 2+3+1 = 6\)</span>，剩余 <span class="arithmatex">\(10 - 6 = 4\)</span> 自由分配：</p>
+<div class="arithmatex">\[
+\binom{4 + 3 - 1}{3-1} = \binom{6}{2} = 15
+\]</div>
+<hr />
+<h3 id="84-a_i-le-x_i-le-b_i">8.4 上下界限制（<span class="arithmatex">\(a_i \le x_i \le b_i\)</span>）<a class="headerlink" href="#84-a_i-le-x_i-le-b_i" title="Permanent link">&para;</a></h3>
+<p><strong>条件</strong>：<span class="arithmatex">\(a_i \le x_i \le b_i\)</span>。</p>
+<p><strong>方法</strong>：<strong>容斥原理</strong>。先去掉下界（令 <span class="arithmatex">\(y_i = x_i - a_i \ge 0\)</span>），得到上界 <span class="arithmatex">\(y_i \le b_i - a_i = c_i\)</span>，然后对上界进行容斥。</p>
+<p>设去掉下界后方程为 <span class="arithmatex">\(y_1 + \cdots + y_k = N\)</span>（<span class="arithmatex">\(N = n - \sum a_i\)</span>），<span class="arithmatex">\(0 \le y_i \le c_i\)</span>。</p>
+<p><strong>容斥</strong>：总方案 = 无上界限制的方案 − 至少一个变量越界的方案 + 至少两个越界 − ...</p>
+<div class="arithmatex">\[
+\text{解个数} = \sum_{S \subseteq \{1,\ldots,k\}} (-1)^{|S|} \binom{N - \sum_{i \in S}(c_i + 1) + k - 1}{k - 1}
+\]</div>
+<p>其中 <span class="arithmatex">\(S\)</span> 是"越界"的变量集合，对 <span class="arithmatex">\(i \in S\)</span>，令 <span class="arithmatex">\(y_i' = y_i - (c_i + 1) \ge 0\)</span>（即 <span class="arithmatex">\(y_i \ge c_i + 1\)</span>，超出上界）。</p>
+<blockquote>
+<p>若 <span class="arithmatex">\(N - \sum_{i \in S}(c_i+1) &lt; 0\)</span>，该项为 <span class="arithmatex">\(0\)</span>。</p>
+</blockquote>
+<h4 id="_44">示例<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><span class="arithmatex">\(x_1 + x_2 + x_3 = 10\)</span>，<span class="arithmatex">\(0 \le x_1 \le 4,\ 0 \le x_2 \le 3,\ 0 \le x_3 \le 5\)</span>。</p>
+</blockquote>
+<p><span class="arithmatex">\(N = 10\)</span>，<span class="arithmatex">\(c_1=4, c_2=3, c_3=5\)</span>。容斥：</p>
+<ul>
+<li>无限制：<span class="arithmatex">\(\binom{12}{2} = 66\)</span></li>
+<li><span class="arithmatex">\(x_1 \ge 5\)</span>（即 <span class="arithmatex">\(y_1 \ge 5\)</span>）：<span class="arithmatex">\(\binom{12-5}{2} = \binom{7}{2} = 21\)</span></li>
+<li><span class="arithmatex">\(x_2 \ge 4\)</span>：<span class="arithmatex">\(\binom{12-4}{2} = \binom{8}{2} = 28\)</span></li>
+<li><span class="arithmatex">\(x_3 \ge 6\)</span>：<span class="arithmatex">\(\binom{12-6}{2} = \binom{6}{2} = 15\)</span></li>
+<li><span class="arithmatex">\(x_1 \ge 5, x_2 \ge 4\)</span>：<span class="arithmatex">\(\binom{12-5-4}{2} = \binom{3}{2} = 3\)</span></li>
+<li><span class="arithmatex">\(x_1 \ge 5, x_3 \ge 6\)</span>：<span class="arithmatex">\(\binom{12-5-6}{2} = \binom{1}{2} = 0\)</span></li>
+<li><span class="arithmatex">\(x_2 \ge 4, x_3 \ge 6\)</span>：<span class="arithmatex">\(\binom{12-4-6}{2} = \binom{2}{2} = 1\)</span></li>
+<li>三者全越界：<span class="arithmatex">\(\binom{12-5-4-6}{2} = \binom{-3}{2} = 0\)</span></li>
+</ul>
+<div class="arithmatex">\[
+\text{答案} = 66 - 21 - 28 - 15 + 3 + 0 + 1 - 0 = 6
+\]</div>
+<hr />
+<h3 id="_45">总结表<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">条件</th>
+<th style="text-align: center;">解数公式</th>
+<th style="text-align: left;">转化方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(x_i \ge 1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\binom{n-1}{k-1}\)</span></td>
+<td style="text-align: left;">直接隔板</td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(x_i \ge 0\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\binom{n+k-1}{k-1}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(y_i = x_i + 1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(x_i \ge a_i\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(\binom{n-\sum a_i+k-1}{k-1}\)</span></td>
+<td style="text-align: left;"><span class="arithmatex">\(y_i = x_i - a_i\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;"><span class="arithmatex">\(a_i \le x_i \le b_i\)</span></td>
+<td style="text-align: center;">容斥</td>
+<td style="text-align: left;">去下界 + 容斥上界</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="s-59e4a433">9. 鸽巢原理<a class="headerlink" href="#s-59e4a433" title="Permanent link">&para;</a></h2>
+<h3 id="91">9.1 普通鸽巢原理<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
+<h4 id="_46">内容<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>将 <span class="arithmatex">\(n + 1\)</span> 个物体放入 <span class="arithmatex">\(n\)</span> 个盒子（鸽巢）中，则<strong>至少有一个盒子</strong>包含至少 <span class="arithmatex">\(2\)</span> 个物体。</p>
+</blockquote>
+<p>更一般地：</p>
+<blockquote>
+<p>将 <span class="arithmatex">\(N\)</span> 个物体放入 <span class="arithmatex">\(k\)</span> 个盒子，则<strong>至少有一个盒子</strong>包含至少 <span class="arithmatex">\(\lceil N/k \rceil\)</span> 个物体。</p>
+</blockquote>
+<div class="arithmatex">\[
+\boxed{\text{某个盒子中至少 } \left\lceil \frac{N}{k} \right\rceil \text{ 个物体}}
+\]</div>
+<h4 id="_47">证明（反证法）<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h4>
+<p>假设每个盒子最多 <span class="arithmatex">\(\lceil N/k \rceil - 1\)</span> 个，则总数最多 <span class="arithmatex">\(k \cdot (\lceil N/k \rceil - 1) &lt; N\)</span>，矛盾。</p>
+<h4 id="_48">应用示例<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h4>
+<p><strong>例 1</strong>：任意 13 个人中，至少有 2 人生日在同一个月。
+（13 人放入 12 个月，必有某月 <span class="arithmatex">\(\ge 2\)</span> 人）</p>
+<p><strong>例 2</strong>：从 <span class="arithmatex">\(1\)</span> 到 <span class="arithmatex">\(2n\)</span> 的整数中任取 <span class="arithmatex">\(n+1\)</span> 个，必有两个数其中一个整除另一个。
+（按最大奇因子分类，共 <span class="arithmatex">\(n\)</span> 类，取 <span class="arithmatex">\(n+1\)</span> 个必有两数同类，较小者整除较大者）</p>
+<p><strong>例 3</strong>：<span class="arithmatex">\(n+1\)</span> 个互不相同的、小于 <span class="arithmatex">\(2n\)</span> 的正整数中，必有一个整除另一个。</p>
+<p><strong>例 4（前缀和）</strong>：给定 <span class="arithmatex">\(n\)</span> 个整数 <span class="arithmatex">\(a_1, \ldots, a_n\)</span>，存在连续子段之和为 <span class="arithmatex">\(n\)</span> 的倍数。
+（令 <span class="arithmatex">\(S_k = \sum_{i=1}^k a_i\)</span>，<span class="arithmatex">\(n+1\)</span> 个前缀和 <span class="arithmatex">\(S_0, S_1, \ldots, S_n\)</span> 对 <span class="arithmatex">\(n\)</span> 取模只有 <span class="arithmatex">\(n\)</span> 种余数，必有两个同余，其差为 <span class="arithmatex">\(n\)</span> 的倍数）</p>
+<hr />
+<h2 id="s-79cea7ce">10. 容斥原理<a class="headerlink" href="#s-79cea7ce" title="Permanent link">&para;</a></h2>
+<h3 id="_49">基本思想<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>要计算<strong>至少满足一个</strong>性质的元素个数，先<strong>加上</strong>各自满足的，再<strong>减去</strong>两两都满足的，再<strong>加上</strong>三个都满足的，依此类交。</p>
+</blockquote>
+<p>用<strong>补集转化</strong>：计算<strong>都不满足</strong>的元素个数 = 总数 − 至少满足一个的个数。</p>
+<h3 id="_50">公式<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
+<p>设全集 <span class="arithmatex">\(U\)</span>，性质集合 <span class="arithmatex">\(A_1, A_2, \ldots, A_n\)</span>，<span class="arithmatex">\(|A_i|\)</span> 表示满足性质 <span class="arithmatex">\(i\)</span> 的元素个数。</p>
+<h4 id="_51">至少满足一个性质的元素个数<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+\boxed{|A_1 \cup A_2 \cup \cdots \cup A_n| = \sum_{i}|A_i| - \sum_{i&lt;j}|A_i \cap A_j| + \sum_{i&lt;j&lt;k}|A_i \cap A_j \cap A_k| - \cdots + (-1)^{n-1}|A_1 \cap \cdots \cap A_n|}
+\]</div>
+<p>用求和符号：</p>
+<div class="arithmatex">\[
+\left|\bigcup_{i=1}^{n}A_i\right| = \sum_{\emptyset \ne S \subseteq [n]} (-1)^{|S|+1}\left|\bigcap_{i \in S}A_i\right|
+\]</div>
+<h4 id="_52">都不满足的元素个数<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+\boxed{\left|\overline{A_1} \cap \overline{A_2} \cap \cdots \cap \overline{A_n}\right| = |U| - \sum_{i}|A_i| + \sum_{i&lt;j}|A_i \cap A_j| - \cdots + (-1)^{n}|A_1 \cap \cdots \cap A_n|}
+\]</div>
+<p>即：</p>
+<div class="arithmatex">\[
+= \sum_{S \subseteq [n]} (-1)^{|S|}\left|\bigcap_{i \in S}A_i\right|
+\]</div>
+<p>其中 <span class="arithmatex">\(S = \emptyset\)</span> 时为 <span class="arithmatex">\(|U|\)</span>。</p>
+<h3 id="_53">二集合、三集合情形<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h3>
+<p><strong>二集合</strong>：</p>
+<div class="arithmatex">\[
+|A \cup B| = |A| + |B| - |A \cap B|
+\]</div>
+<p><strong>三集合</strong>：</p>
+<div class="arithmatex">\[
+|A \cup B \cup C| = |A|+|B|+|C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
+\]</div>
+<h3 id="_54">子集枚举实现<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h3>
+<p>竞赛中常用<strong>位运算枚举子集</strong>实现容斥：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span class="c1">// n 个性质，f(S) = 满足 S 中所有性质的元素个数</span>
+<span class="c1">// 求至少满足一个性质的元素个数</span>
+<span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">inclusion_exclusion</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">function</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="n">S</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">bits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__builtin_popcount</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bits</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">S</span><span class="p">);</span><span class="w">   </span><span class="c1">// 奇数个：加</span>
+<span class="w">        </span><span class="k">else</span><span class="w">                </span><span class="n">ans</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">S</span><span class="p">);</span><span class="w">   </span><span class="c1">// 偶数个：减</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 求都不满足的元素个数 = |U| - 上式</span>
+</code></pre></div>
+<h3 id="_55">经典应用<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h3>
+<h4 id="1_2">应用 1：<strong>错排问题</strong><a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><span class="arithmatex">\(n\)</span> 封信装入 <span class="arithmatex">\(n\)</span> 个信封，<strong>全部装错</strong>的方案数 <span class="arithmatex">\(D_n\)</span>。</p>
+</blockquote>
+<p><strong>方法</strong>：全集 = <span class="arithmatex">\(n!\)</span>（所有排列），<span class="arithmatex">\(A_i\)</span> = 第 <span class="arithmatex">\(i\)</span> 封信装对。求<strong>都不装对</strong>的方案数：</p>
+<div class="arithmatex">\[
+D_n = n! - \binom{n}{1}(n-1)! + \binom{n}{2}(n-2)! - \cdots + (-1)^n\binom{n}{n}0!
+\]</div>
+<div class="arithmatex">\[
+\boxed{D_n = n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}}
+\]</div>
+<p>递推：<span class="arithmatex">\(D_n = (n-1)(D_{n-1} + D_{n-2})\)</span>，<span class="arithmatex">\(D_1 = 0,\ D_2 = 1\)</span>。</p>
+<h4 id="2_2">应用 2：欧拉函数<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>$\varphi(n) = $ 不超过 <span class="arithmatex">\(n\)</span> 且与 <span class="arithmatex">\(n\)</span> 互质的正整数个数。</p>
+</blockquote>
+<p>设 <span class="arithmatex">\(n\)</span> 的质因数为 <span class="arithmatex">\(p_1, p_2, \ldots, p_k\)</span>。全集 <span class="arithmatex">\(U = \{1, 2, \ldots, n\}\)</span>，<span class="arithmatex">\(A_i\)</span> = 被 <span class="arithmatex">\(p_i\)</span> 整除的数。求<strong>都不被任何 <span class="arithmatex">\(p_i\)</span> 整除</strong>的数：</p>
+<div class="arithmatex">\[
+\boxed{\varphi(n) = n\prod_{i=1}^{k}\left(1 - \frac{1}{p_i}\right)}
+\]</div>
+<h4 id="3-84">应用 3：不定方程上下界（见第 8.4 节）<a class="headerlink" href="#3-84" title="Permanent link">&para;</a></h4>
+<h4 id="4-stirling">应用 4：第二类 Stirling 数（容斥公式）<a class="headerlink" href="#4-stirling" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>将 <span class="arithmatex">\(n\)</span> 个<strong>不同</strong>元素划分为<strong>恰好</strong> <span class="arithmatex">\(k\)</span> 个<strong>非空</strong>集合的方案数 <span class="arithmatex">\(S(n,k)\)</span>。</p>
+</blockquote>
+<div class="arithmatex">\[
+\boxed{S(n, k) = \frac{1}{k!}\sum_{i=0}^{k}(-1)^i\binom{k}{i}(k-i)^n}
+\]</div>
+<h4 id="5">应用 5：多重集组合数<a class="headerlink" href="#5" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>从 <span class="arithmatex">\(k\)</span> 种元素中选 <span class="arithmatex">\(n\)</span> 个，第 <span class="arithmatex">\(i\)</span> 种最多 <span class="arithmatex">\(c_i\)</span> 个，求方案数。</p>
+</blockquote>
+<p>去上界后容斥（类似第 8.4 节）。</p>
+<hr />
+<h3 id="_56">容斥原理核心公式速查<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">问题</th>
+<th style="text-align: left;">公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">至少满足一个</td>
+<td style="text-align: left;">$\sum_{\emptyset\ne S}(-1)^{</td>
+</tr>
+<tr>
+<td style="text-align: left;">都不满足</td>
+<td style="text-align: left;">$\sum_{S}(-1)^{</td>
+</tr>
+<tr>
+<td style="text-align: left;">错排</td>
+<td style="text-align: left;"><span class="arithmatex">\(D_n = n!\sum_{k=0}^n\frac{(-1)^k}{k!}\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">欧拉函数</td>
+<td style="text-align: left;"><span class="arithmatex">\(\varphi(n) = n\prod(1-\frac{1}{p_i})\)</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Stirling 数</td>
+<td style="text-align: left;"><span class="arithmatex">\(S(n,k)=\frac{1}{k!}\sum(-1)^i\binom{k}{i}(k-i)^n\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_57">总结<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">主题</th>
+<th style="text-align: left;">核心思想</th>
+<th style="text-align: left;">竞赛中的关键应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">组合数计算</td>
+<td style="text-align: left;">递推 / 逆元 / Lucas</td>
+<td style="text-align: left;"><span class="arithmatex">\(O(1)\)</span> 查询组合数</td>
+</tr>
+<tr>
+<td style="text-align: left;">捆绑 / 插空 / 隔板</td>
+<td style="text-align: left;">化复杂为标准模型</td>
+<td style="text-align: left;">排列组合应用题</td>
+</tr>
+<tr>
+<td style="text-align: left;">恒等式</td>
+<td style="text-align: left;">化简求和式</td>
+<td style="text-align: left;">推导递推、优化计算</td>
+</tr>
+<tr>
+<td style="text-align: left;">二项式定理</td>
+<td style="text-align: left;"><span class="arithmatex">\((a+b)^n\)</span> 展开</td>
+<td style="text-align: left;">子集计数、求和</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lucas 定理</td>
+<td style="text-align: left;"><span class="arithmatex">\(p\)</span> 进制分解</td>
+<td style="text-align: left;">大组合数取模</td>
+</tr>
+<tr>
+<td style="text-align: left;">单调性</td>
+<td style="text-align: left;">单峰性</td>
+<td style="text-align: left;">优化、估计</td>
+</tr>
+<tr>
+<td style="text-align: left;">不定方程解数</td>
+<td style="text-align: left;">隔板法 + 容斥</td>
+<td style="text-align: left;">分配问题</td>
+</tr>
+<tr>
+<td style="text-align: left;">鸽巢原理</td>
+<td style="text-align: left;">存在性证明</td>
+<td style="text-align: left;">抽屉论证</td>
+</tr>
+<tr>
+<td style="text-align: left;">容斥原理</td>
+<td style="text-align: left;">补集 + 加减交替</td>
+<td style="text-align: left;">去限制、求交并</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>部分由 AI 润色</p>
+</blockquote>
+<h2 id="_58">相关题目<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>由算法标签自动关联，可继续补充。</p>
+</blockquote>
+<ul>
+<li><a href="../../../02_%E9%A2%98%E8%A7%A3/P12961%20%E6%A0%91/">P12961 树</a></li>
+<li><a href="../../../02_%E9%A2%98%E8%A7%A3/%E5%B9%B8%E8%BF%90%E4%B8%B2%E4%B8%B2/">幸运串串</a></li>
+<li><a href="../../../02_%E9%A2%98%E8%A7%A3/%E9%87%8D%E7%94%9F%E6%88%90%E7%8C%AA/">重生成猪</a></li>
+</ul>
+<hr>
+<section class="oi-backlinks">
+<h2 id="oi-backlinks">反向链接 <span class="oi-count">2</span></h2>
+<ul>
+<li><a href="../../../00_%E7%B4%A2%E5%BC%95/MOC%20-%20%E6%95%B0%E5%AD%A6/">MOC - 数学</a></li>
+<li><a href="../../../00_%E7%B4%A2%E5%BC%95/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88CSP-J%E2%86%92CSP-S%E2%86%92NOI%EF%BC%89/">学习路线（CSP-J→CSP-S→NOI）</a></li>
+</ul>
+</section>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      内容仅供学习交流
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.instant.progress", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../../assets/katex/katex.min.js"></script>
+      
+        <script src="../../../assets/katex/auto-render.min.js"></script>
+      
+        <script src="../../../assets/js/katex-init.js"></script>
+      
+        <script src="../../../assets/js/copy-code.js"></script>
+      
+    
+  </body>
+</html>
