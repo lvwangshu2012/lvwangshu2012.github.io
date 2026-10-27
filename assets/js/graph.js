@@ -62,7 +62,7 @@
     var edges = new vis.DataSet(G.edges.map(function (e, i) {
       return {
         id: i, from: e.from, to: e.to,
-        color: { color: "rgba(160,180,175,.13)", highlight: "#00e08a", hover: "rgba(0,224,138,.55)" },
+        color: { color: "rgba(160,180,175,.13)", highlight: "#3f9c78", hover: "rgba(63,156,120,.5)" },
         width: 1,
         arrows: { to: { enabled: true, scaleFactor: 0.35 } },
         smooth: { type: "continuous", roundness: 0.2 }

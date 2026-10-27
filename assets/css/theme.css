@@ -35,17 +35,17 @@
   --oi-fg-faint:    #5e716a;
 
   /* 强调：霓虹绿 */
-  --oi-accent:      #00e08a;
-  --oi-accent-hi:   #5cffc0;
-  --oi-accent-soft: rgba(0, 224, 138, .13);
-  --oi-hover:       #16211f;
-  --oi-active:      #0d3b2c;
-  --oi-sel:         #14532d;
+  --oi-accent:      #3f9c78;
+  --oi-accent-hi:   #6ec7a4;
+  --oi-accent-soft: rgba(63, 156, 120, .11);
+  --oi-hover:       #141c1a;
+  --oi-active:      #10352a;
+  --oi-sel:         #1b4a3a;
 
   /* 语义 */
-  --oi-ok:   #34d399;
-  --oi-warn: #facc15;
-  --oi-err:  #ff5c5c;
+  --oi-ok:   #4aa383;
+  --oi-warn: #c9b458;
+  --oi-err:  #d96a6a;
 
   --oi-sh-1: 0 1px 2px rgba(0, 0, 0, .5);
   --oi-sh-2: 0 6px 18px rgba(0, 0, 0, .55);
@@ -57,9 +57,9 @@
   --md-primary-fg-color--dark:       #040608;
   --md-primary-bg-color:             #c7d3ce;
   --md-primary-bg-color--light:      rgba(199, 211, 206, .72);
-  --md-accent-fg-color:              #00e08a;
-  --md-accent-fg-color--transparent: rgba(0, 224, 138, .13);
-  --md-accent-bg-color:              #04120c;
+  --md-accent-fg-color:              #3f9c78;
+  --md-accent-fg-color--transparent: rgba(63, 156, 120, .11);
+  --md-accent-bg-color:              #06110d;
 
   --md-default-bg-color:             #0b0f12;
   --md-default-fg-color:             #c7d3ce;
@@ -67,24 +67,24 @@
   --md-default-fg-color--lighter:    #5e716a;
   --md-default-fg-color--lightest:   #1b2429;
   --md-typeset-color:                #c7d3ce;
-  --md-typeset-a-color:              #4ee6b8;
+  --md-typeset-a-color:              #6cbf9f;
   --md-code-bg-color:                #0d1215;
   --md-code-fg-color:                #c9d6d0;
 
   /* 冷色语法配色（无橙） */
-  --md-code-hl-keyword-color:     #5eead4;
-  --md-code-hl-string-color:      #9ae6a1;
-  --md-code-hl-number-color:      #7ef0c4;
-  --md-code-hl-comment-color:     #55695f;
-  --md-code-hl-function-color:    #c8f08f;
-  --md-code-hl-name-color:        #a8d8d0;
-  --md-code-hl-operator-color:    #9db3ab;
-  --md-code-hl-punctuation-color: #7c8f88;
-  --md-code-hl-constant-color:    #67e8f9;
-  --md-code-hl-variable-color:    #b9e8dd;
-  --md-code-hl-special-color:     #d8b4fe;
-  --md-code-hl-generic-color:     #9db3ab;
-  --md-code-hl-color:             #14532d;
+  --md-code-hl-keyword-color:     #63b0a8;
+  --md-code-hl-string-color:      #93c48c;
+  --md-code-hl-number-color:      #86c9ae;
+  --md-code-hl-comment-color:     #5a6b62;
+  --md-code-hl-function-color:    #bccf95;
+  --md-code-hl-name-color:        #a8c4bd;
+  --md-code-hl-operator-color:    #96a8a1;
+  --md-code-hl-punctuation-color: #7a8b84;
+  --md-code-hl-constant-color:    #79b8c8;
+  --md-code-hl-variable-color:    #aecfc5;
+  --md-code-hl-special-color:     #b79ed4;
+  --md-code-hl-generic-color:     #96a8a1;
+  --md-code-hl-color:             #1b4a3a;
 }
 
 [data-md-color-scheme="default"] {
@@ -174,7 +174,7 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background: radial-gradient(58% 100% at 50% 0%,
-              rgba(0, 224, 138, .10) 0%, rgba(0, 224, 138, .03) 42%, transparent 74%);
+              rgba(63, 156, 120, .065) 0%, rgba(63, 156, 120, .02) 42%, transparent 74%);
 }
 
 /* 极淡扫描线，仅暗色 */
@@ -268,7 +268,7 @@ kbd {
   right: .35rem;
   height: 2px;
   background: var(--oi-accent);
-  box-shadow: 0 0 8px var(--oi-accent);
+  box-shadow: 0 0 6px rgba(63, 156, 120, .35);
   border-radius: 0 0 2px 2px;
 }
 
@@ -287,7 +287,7 @@ kbd {
   transform: scaleX(0);
   transform-origin: 0 50%;
   background: linear-gradient(90deg, var(--oi-accent), var(--oi-accent-hi));
-  box-shadow: 0 0 10px rgba(0, 224, 138, .55);
+  box-shadow: 0 0 6px rgba(63, 156, 120, .32);
   pointer-events: none;
   will-change: transform;
 }
@@ -368,7 +368,7 @@ kbd {
   width: 2.75rem;
   height: 2px;
   background: var(--oi-accent);
-  box-shadow: 0 0 8px rgba(0, 224, 138, .6);
+  box-shadow: none;
 }
 
 [data-md-color-scheme="default"] .md-typeset h1::after { box-shadow: none; }
@@ -466,7 +466,7 @@ kbd {
 .md-typeset summary { font-weight: 700; background: transparent !important; }
 
 .md-typeset .admonition.note,
-.md-typeset .admonition.info { border-left-color: #22d3ee; }
+.md-typeset .admonition.info { border-left-color: #4a8fa8; }
 .md-typeset .admonition.tip { border-left-color: var(--oi-ok); }
 .md-typeset .admonition.warning { border-left-color: var(--oi-warn); }
 .md-typeset .admonition.danger,
@@ -639,7 +639,7 @@ kbd {
   font-size: .72rem;
   font-weight: 700;
   color: var(--oi-accent);
-  opacity: .65;
+  opacity: .5;
 }
 
 .md-typeset a.oi-card:hover .oi-card-k { opacity: 1; }
@@ -835,9 +835,9 @@ kbd {
   background: #2a373d;
 }
 
-.oi-term-bar span:nth-child(1) { background: #00e08a; }
-.oi-term-bar span:nth-child(2) { background: #22d3ee; }
-.oi-term-bar span:nth-child(3) { background: #8b5cf6; }
+.oi-term-bar span:nth-child(1) { background: #3f9c78; }
+.oi-term-bar span:nth-child(2) { background: #4a8fa8; }
+.oi-term-bar span:nth-child(3) { background: #7a6fa8; }
 
 .oi-term-bar em {
   margin-left: auto;
@@ -1109,7 +1109,7 @@ kbd {
   height: 72vh;
   min-height: 460px;
   background:
-    radial-gradient(60% 60% at 50% 40%, rgba(0, 224, 138, .045), transparent 70%),
+    radial-gradient(60% 60% at 50% 40%, rgba(63, 156, 120, .045), transparent 70%),
     var(--oi-bg-deep);
 }
 
