@@ -73,27 +73,28 @@
       autoResize: true,
       interaction: {
         hover: true, tooltipDelay: 200, hideEdgesOnDrag: true,
-        navigationButtons: false, keyboard: false, multiselect: false
+        navigationButtons: false, keyboard: false, multiselect: false,
+        dragNodes: true, dragView: true, zoomView: true
       },
       nodes: { scaling: { min: 5, max: preview ? 20 : 26 } },
       physics: {
+        enabled: true,
         solver: "forceAtlas2Based",
         forceAtlas2Based: {
           gravitationalConstant: -46,
           centralGravity: 0.012,
           springLength: preview ? 90 : 120,
           springConstant: 0.09,
-          damping: 0.55,
+          damping: 0.6,
           avoidOverlap: 0.35
         },
-        stabilization: { enabled: true, iterations: preview ? 220 : 400, fit: true },
-        minVelocity: 0.6
+        // 稳定后**不关闭物理**：保留惯性，拖动节点会带动邻居重排。
+        // 靠 minVelocity 让它在没有外力时自然停住，而不是硬冻结。
+        stabilization: { enabled: true, iterations: preview ? 220 : 400, fit: true, updateInterval: 40 },
+        minVelocity: 1.2,
+        maxVelocity: 60,
+        timestep: 0.35
       }
-    });
-
-    // 稳定后关掉物理，避免长期抖动
-    network.once("stabilizationIterationsDone", function () {
-      network.setOptions({ physics: false });
     });
 
     // 悬停聚焦
@@ -164,6 +165,7 @@
             var q = document.getElementById("oi-graph-q");
             var f = document.getElementById("oi-graph-f");
             var r = document.getElementById("oi-graph-reset");
+            var ph = document.getElementById("oi-graph-phys");
 
             if (q) {
               q.addEventListener("input", function () {
@@ -185,8 +187,27 @@
             if (r) {
               r.addEventListener("click", function () {
                 api.network.setOptions({ physics: true });
+                api.network.startSimulation();
                 api.network.stabilize(300);
-                setTimeout(function () { api.network.setOptions({ physics: false }); }, 1200);
+                if (ph) { ph.classList.add("is-on"); ph.textContent = "冻结布局"; }
+              });
+            }
+
+            // 冻结 / 恢复流动：默认不冻结，随时可调
+            if (ph) {
+              ph.addEventListener("click", function () {
+                var flowing = this.classList.contains("is-on");
+                if (flowing) {
+                  api.network.stopSimulation();
+                  api.network.setOptions({ physics: false });
+                  this.classList.remove("is-on");
+                  this.textContent = "恢复流动";
+                } else {
+                  api.network.setOptions({ physics: true });
+                  api.network.startSimulation();
+                  this.classList.add("is-on");
+                  this.textContent = "冻结布局";
+                }
               });
             }
           }

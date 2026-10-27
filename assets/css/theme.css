@@ -1081,6 +1081,52 @@ kbd {
 .oi-graph-toolbar button { cursor: pointer; }
 .oi-graph-toolbar button:hover { border-color: var(--oi-accent); color: var(--oi-accent); }
 
+/* 布局流动中：按钮前显示呼吸圆点；冻结后回到静态 */
+.oi-graph-toolbar button {
+  min-width: 5.4rem;
+  transition: border-color .15s ease, color .15s ease;
+}
+
+.oi-graph-toolbar button.is-on::before {
+  content: "";
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  margin-right: .32rem;
+  border-radius: 50%;
+  background: var(--oi-accent);
+  vertical-align: middle;
+  animation: oi-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes oi-pulse {
+  0%, 100% { opacity: .35; transform: scale(.85); }
+  50%      { opacity: 1;   transform: scale(1); }
+}
+
+/* 布局流动中：按钮前显示呼吸圆点；冻结后回到静态 */
+.oi-graph-toolbar button {
+  min-width: 5.4rem;
+  transition: border-color .15s ease, color .15s ease;
+}
+
+.oi-graph-toolbar button.is-on::before {
+  content: "";
+  display: inline-block;
+  width: .32rem;
+  height: .32rem;
+  margin-right: .32rem;
+  border-radius: 50%;
+  background: var(--oi-accent);
+  vertical-align: middle;
+  animation: oi-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes oi-pulse {
+  0%, 100% { opacity: .35; transform: scale(.85); }
+  50%      { opacity: 1;   transform: scale(1); }
+}
+
 .oi-graph-more {
   margin-left: auto;
   font-family: var(--oi-font-mono);
