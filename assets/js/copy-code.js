@@ -3,6 +3,20 @@
  * 这里用 Clipboard API 自行实现，并兼容 navigation.instant 的页面切换。
  */
 (function () {
+  // 语言显示名映射：代码块左上角的标签条用
+  var LANG = {
+    cpp: "C++", "c++": "C++", c: "C", csharp: "C#", cs: "C#",
+    python: "Python", py: "Python",
+    bash: "Shell", sh: "Shell", shell: "Shell", zsh: "Shell",
+    js: "JavaScript", javascript: "JavaScript",
+    ts: "TypeScript", typescript: "TypeScript",
+    json: "JSON", yaml: "YAML", yml: "YAML",
+    html: "HTML", xml: "XML", css: "CSS", scss: "SCSS",
+    java: "Java", kotlin: "Kotlin", rust: "Rust", go: "Go",
+    sql: "SQL", markdown: "Markdown", md: "Markdown",
+    text: "Text", plaintext: "Text", plain: "Text"
+  };
+
   function fallback(text, done) {
     var ta = document.createElement("textarea");
     ta.value = text;
@@ -21,6 +35,17 @@
       var pre = code.parentElement;
       if (pre.dataset.oiCopy === "1") return;
       pre.dataset.oiCopy = "1";
+
+      // 语言标签：Material 把 language-xxx 挂在 .highlight 容器上
+      var holder = pre.parentElement;
+      if (holder && !holder.dataset.lang) {
+        var mm = ((holder.className || "") + " " + (pre.className || ""))
+          .match(/language-([A-Za-z0-9+#-]+)/);
+        if (mm) {
+          var k = mm[1].toLowerCase();
+          holder.dataset.lang = LANG[k] || mm[1];
+        }
+      }
 
       var btn = document.createElement("button");
       btn.type = "button";
