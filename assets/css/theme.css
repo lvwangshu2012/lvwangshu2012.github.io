@@ -833,6 +833,14 @@ kbd {
 }
 
 .oi-meta span:first-child { color: var(--oi-sage-400); border-color: var(--oi-line-strong); }
+.oi-meta .oi-views-page { color: var(--oi-fg-3); }
+
+/* 页脚访问计数 */
+.oi-views-site {
+  margin-left: .45rem;
+  color: var(--oi-fg-4);
+  font-family: var(--oi-font-mono);
+}
 
 /* ---------- 9 终端横幅 ---------- */
 .oi-hero { margin: 1.3rem 0 2.1rem; }
