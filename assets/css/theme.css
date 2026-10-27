@@ -245,9 +245,9 @@ kbd {
 }
 
 .md-header__title {
-  font-family: var(--oi-font-heading);
+  font-family: var(--oi-font-mono);
   font-weight: 700;
-  letter-spacing: .01em;
+  letter-spacing: .03em;
 }
 
 .md-tabs {
